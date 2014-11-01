@@ -1,2 +1,2 @@
-pos-desenv-web
+TECNOLOGIAS PARA O DESENVOLVIMENTO APLICAÇÕES WEB
 ==============

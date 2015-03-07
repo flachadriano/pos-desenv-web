@@ -1,0 +1,35 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+#pagina {
+    width: 1000px;
+    background-color: #DDD;
+    margin: 0 auto;
+}
+
+#esq {
+    width: 400px;
+    min-height: 500px;
+    border: 1px solid #000;
+    float: left;
+}
+
+#dir {
+    width: 400px;
+    min-height: 500px;
+    border: 1px solid #000;
+    float: right;
+}
+
+#teste {
+    width: 400px;
+    min-height: 500px;
+    border: 1px solid #000;
+}
+
+.clear {
+    clear: both;
+}

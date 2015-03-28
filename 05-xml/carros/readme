@@ -1,0 +1,6 @@
+Created the files:
+- carros.xsd
+- carros.xml
+
+Into the root folder of the project, run:
+	xjc carros.xsd -d src/main/java -p br.furb.carros 

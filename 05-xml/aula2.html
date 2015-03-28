@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>Contatos</title>
+		<script>
+			window.onload = function() {
+				xmlhttp = new XMLHttpRequest();
+				xmlhttp.open("GET", "agenda.xml", false);
+				xmlhttp.send();
+				xmlDoc = xmlhttp.responseXML;
+
+				table = document.getElementById("tab");
+				contatos = xmlDoc.getElementsByTagName("contato");
+
+				for (var i = contatos.length - 1; i >= 0; i--) {
+					nome = contatos[i].getElementsByTagName("nome")[0].firstChild.data;
+					email = contatos[i].getElementsByTagName("email")[0].firstChild.data;
+
+					table.innerHTML += "<tr><td>"+nome+"</td><td>"+email+"</td></tr>";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Contatos</h1>
+		<table id = "tab">
+			<tr>
+				<th>Nome</th>
+				<th>Email</th>
+			</tr>
+		</table>
+	</body>
+</html>

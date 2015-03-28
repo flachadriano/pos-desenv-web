@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="app.css">
+		<script type="text/javascript" src="app.js"></script>
+		<!-- Include meta tag to ensure proper rendering and touch zooming -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Include jQuery Mobile stylesheets -->
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+		<!-- Include the jQuery library -->
+		<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<!-- Include the jQuery Mobile library -->
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	</head>
+	<body>
+		<div data-role="page" id="demo-page">
+		    <div data-role="header">
+		        <h1>Cooperativa</h1>
+		        <a href="#left-panel" data-icon="grid" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc">Open left panel</a>
+		    </div><!-- /header -->
+
+		    <div data-role="content">
+		        <a href="#demo-intro" data-rel="back" class="back-btn" data-role="button" data-mini="true" data-inline="true" data-icon="back" data-iconpos="right">Back to demo intro</a>
+		    </div><!-- /content -->
+
+		    <div data-role="panel" id="left-panel" data-theme="b">
+		        <p>Menu</p>
+		        <nav>
+		        	<ul>
+						<li><a href="login.html">Saldo</a></li>
+		        	</ul>
+		        </nav>
+		        <a href="#" data-rel="close" data-role="button" data-mini="true" data-inline="true" data-icon="delete" data-iconpos="right">Close</a>
+		    </div><!-- /panel -->
+		</div>
+	</body>
+</html>

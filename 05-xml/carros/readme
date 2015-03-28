@@ -4,3 +4,9 @@ Created the files:
 
 Into the root folder of the project, run:
 	xjc carros.xsd -d src/main/java -p br.furb.carros 
+
+Generate a XML with JAXB
+Read a XML with JAXB
+
+Generate a JSON with Jackson
+Read a JSON with Jackson

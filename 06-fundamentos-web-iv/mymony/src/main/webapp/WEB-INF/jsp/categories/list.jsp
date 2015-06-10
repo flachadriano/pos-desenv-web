@@ -4,12 +4,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>New</title>
+        <title>MyMony - List Categories</title>
     </head>
     <body>
-        <form action="create" method="post">
-            Name: <input type="text" name="category.name" /><br />
-            <input type="submit" value="Save" />
-        </form>
+        <h1>Categories</h1>
+        <table>
+            <td>${id}</td>
+            <td>${name}</td>
+        </table>
     </body>
 </html>

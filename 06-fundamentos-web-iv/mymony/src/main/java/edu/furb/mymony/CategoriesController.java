@@ -19,39 +19,39 @@ import edu.furb.mymony.model.Category;
 @Path("categories")
 public class CategoriesController {
 
-	@Inject
-	private Result result;
+    @Inject
+    private Result result;
 
-	@Get("index")
-	public void index() throws ClassNotFoundException, SQLException {
-		Connection connection = Server.getConnection();
-		ResultSet rs = Server.executeQuery(connection, "select * from categories");
+    @Get("list")
+    public void index() throws ClassNotFoundException, SQLException {
+        Connection connection = Server.getConnection();
+        ResultSet rs = Server.executeQuery(connection, "select * from categories");
 
-		while (rs.next()) {
-			result.include("id", rs.getString("id"));
-			result.include("name", rs.getString("name"));
-		}
+        while (rs.next()) {
+            result.include("id", rs.getString("id"));
+            result.include("name", rs.getString("name"));
+        }
 
-		Server.closeConnection(connection);
-	}
+        Server.closeConnection(connection);
+    }
 
-	@Get("new")
-	public void form() {
-	}
+    @Get("new")
+    public void form() {
+    }
 
-	@Post("create")
-	public void create(Category category) throws ClassNotFoundException, SQLException {
-		Connection connection = Server.getConnection();
-		Server.executeAndCommit(connection, "insert into categories values(" + category.getName() + ")");
-		Server.closeConnection(connection);
-	}
+    @Post("create")
+    public void create(Category category) throws ClassNotFoundException, SQLException {
+        Connection connection = Server.getConnection();
+        Server.executeAndCommit(connection, "insert into categories values(" + category.getName() + ")");
+        Server.closeConnection(connection);
+    }
 
-	@Put("update")
-	public void update() {
-	}
+    @Put("update")
+    public void update() {
+    }
 
-	@Delete("destroy")
-	public void destroy() {
-	}
+    @Delete("destroy")
+    public void destroy() {
+    }
 
 }

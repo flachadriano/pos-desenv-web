@@ -25,7 +25,7 @@ public class CategoriesController {
 	@Get("index")
 	public void index() throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
-		ResultSet rs = Server.executeQuery(connection, "select * form categories");
+		ResultSet rs = Server.executeQuery(connection, "select * from categories");
 
 		while (rs.next()) {
 			result.include("id", rs.getString("id"));

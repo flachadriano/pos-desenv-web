@@ -53,8 +53,12 @@ public class CategoriesController {
 		Server.closeConnection(connection);
 	}
 
+	@Get("show")
+	public void show() {
+	}
+
 	@Put("update")
-	public void update() {
+	public void update(Category category) {
 	}
 
 	@Delete("destroy")

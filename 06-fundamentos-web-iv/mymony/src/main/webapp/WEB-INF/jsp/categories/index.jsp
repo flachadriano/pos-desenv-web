@@ -18,6 +18,7 @@
 			<tr>
 				<td>${category.id}</td>
 				<td>${category.name}</td>
+				<td><a href="show">Edit</a></td>
 			</tr>
 		</c:forEach>
 	</table>

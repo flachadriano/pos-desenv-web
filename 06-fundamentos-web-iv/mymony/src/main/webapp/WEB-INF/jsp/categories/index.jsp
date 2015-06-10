@@ -18,7 +18,8 @@
 			<tr>
 				<td>${category.id}</td>
 				<td>${category.name}</td>
-				<td><a href="show">Edit</a></td>
+				<td><a href="update/${category.id}">Edit</a></td>
+				<td><a href="destroy/${category.id}" data-method='delete'>Edit</a></td>
 			</tr>
 		</c:forEach>
 	</table>

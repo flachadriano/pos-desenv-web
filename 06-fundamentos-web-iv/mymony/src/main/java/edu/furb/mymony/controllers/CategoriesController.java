@@ -1,4 +1,4 @@
-package edu.furb.mymony;
+package edu.furb.mymony.controllers;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,7 +14,8 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
-import edu.furb.mymony.model.Category;
+import edu.furb.mymony.Server;
+import edu.furb.mymony.models.Category;
 
 @Controller
 @Path("categories")

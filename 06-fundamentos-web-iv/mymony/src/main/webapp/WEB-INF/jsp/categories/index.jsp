@@ -13,7 +13,7 @@
 
 	<h1>Categories</h1>
 
-	<a href="new">Create category</a>
+	<a href="create">Create category</a>
 
 	<table>
 		<c:forEach var="category" items="${categories}">

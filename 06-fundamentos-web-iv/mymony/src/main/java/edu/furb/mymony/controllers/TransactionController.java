@@ -1,4 +1,4 @@
-package edu.furb.mymony;
+package edu.furb.mymony.controllers;
 
 import br.com.caelum.vraptor.Controller;
 

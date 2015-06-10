@@ -7,8 +7,9 @@
 <title>New</title>
 </head>
 <body>
-	<form action="/categories" method="post">
-		Name: <input type="text"> <input type="submit" value="Submit">
+	<form action="create" method="post">
+		Name: <input type="text" name="category.name" /><br />
+		<input type="submit" value="Save" />
 	</form>
 </body>
 </html>

@@ -7,11 +7,15 @@
 <title>MyMony</title>
 </head>
 <body>
+
 	<h1>Categories</h1>
+
+	<a href="new">Create category</a>
 
 	<table>
 		<td>${id}</td>
 		<td>${name}</td>
 	</table>
+
 </body>
 </html>

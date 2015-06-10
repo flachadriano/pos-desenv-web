@@ -42,7 +42,8 @@ public class CategoriesController {
 	@Post("create")
 	public void create(Category category) throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
-		Server.executeAndCommit(connection, "insert into categories values(" + category.getName() + ")");
+		String sql = "insert into categories(name) values('" + category.getName() + "')";
+		Server.executeAndCommit(connection, sql);
 		Server.closeConnection(connection);
 	}
 

@@ -3,6 +3,8 @@ package edu.furb.mymony;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,13 +27,17 @@ public class CategoriesController {
 	@Get("index")
 	public void index() throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
-		ResultSet rs = Server.executeQuery(connection, "select * from categories");
+		ResultSet rs = Server.executeQuery(connection, "select id, name from categories");
+		List<Category> categories = new LinkedList<Category>();
 
 		while (rs.next()) {
-			result.include("id", rs.getString("id"));
-			result.include("name", rs.getString("name"));
+			Category category = new Category();
+			category.setId(rs.getLong(1));
+			category.setName(rs.getString(2));
+			categories.add(category);
 		}
 
+		result.include("categories", categories);
 		Server.closeConnection(connection);
 	}
 

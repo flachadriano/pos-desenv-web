@@ -26,7 +26,9 @@ public class CategoriesController {
 	@Get("index")
 	public void index() throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
-		ResultSet rs = Server.executeQuery(connection, "select id, name from categories");
+		String sql = "select id, name from categories";
+		show(sql);
+		ResultSet rs = Server.executeQuery(connection, sql);
 		List<Category> categories = new LinkedList<Category>();
 
 		while (rs.next()) {
@@ -48,6 +50,7 @@ public class CategoriesController {
 	public void create(Category category) throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
 		String sql = "insert into categories(name) values('" + category.getName() + "')";
+		show(sql);
 		Server.executeAndCommit(connection, sql);
 		Server.closeConnection(connection);
 
@@ -57,7 +60,9 @@ public class CategoriesController {
 	@Get("update/{id}")
 	public void update(Long id) throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
-		ResultSet rs = Server.executeQuery(connection, "select id, name from categories where id = " + id);
+		String sql = "select id, name from categories where id = " + id;
+		show(sql);
+		ResultSet rs = Server.executeQuery(connection, sql);
 
 		rs.next();
 		Category category = new Category();
@@ -72,6 +77,7 @@ public class CategoriesController {
 	public void update(Long id, Category category) throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
 		String sql = "update categories set name = '" + category.getName() + "' where id = " + id;
+		show(sql);
 		Server.executeAndCommit(connection, sql);
 		Server.closeConnection(connection);
 

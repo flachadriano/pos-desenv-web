@@ -6,13 +6,13 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>New category</title>
+<title>Nova categoria</title>
 </head>
 
 <body>
 	<form action="" method="POST">
-		Name: <input type="text" name="category.name" /><br /> <input
-			type="submit" value="Create" />
+		Nome: <input type="text" name="category.name" /><br /> <input
+			type="submit" value="Criar" />
 	</form>
 </body>
 

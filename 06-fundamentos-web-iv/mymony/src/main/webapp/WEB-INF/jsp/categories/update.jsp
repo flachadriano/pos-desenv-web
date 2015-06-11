@@ -6,13 +6,13 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Edit category</title>
+<title>Editar categoria</title>
 </head>
 
 <body>
 	<form action="<c:url value="${category.id}"/>" method="POST">
-		Name: <input type="text" name="category.name" value="${category.name}" /><br />
-		<input type="submit" value="Update" />
+		Nome: <input type="text" name="category.name" value="${category.name}" /><br />
+		<input type="submit" value="Atualizar" />
 	</form>
 </body>
 

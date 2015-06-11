@@ -11,20 +11,20 @@
 
 <body>
 
-	<h1>Categories</h1>
+	<h1>Categorias</h1>
 
-	<a href="create">Create category</a>
+	<a href="create">Criar categoria</a>
 
 	<table>
 		<c:forEach var="category" items="${categories}">
 			<tr>
 				<td>${category.id}</td>
 				<td>${category.name}</td>
-				<td><a href="update/${category.id}">Edit</a></td>
+				<td><a href="update/${category.id}">Editar</a></td>
 				<td>
 					<form action="<c:url value="destroy/${category.id}"/>"
 						method="POST">
-						<button class="link" name="_method" value="DELETE">Remover</button>
+						<button class="link" name="_method" value="DELETE">Deletar</button>
 					</form>
 				</td>
 			</tr>

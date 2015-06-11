@@ -22,11 +22,11 @@
 				<td>${transaction.category_id}</td>
 				<td>${transaction.due_date}</td>
 				<td>${transaction.value}</td>
-				<td><a href="update/${transaction.id}">Edit</a></td>
+				<td><a href="update/${transaction.id}">Editar</a></td>
 				<td>
 					<form action="<c:url value="destroy/${transaction.id}"/>"
 						method="POST">
-						<button class="link" name="_method" value="DELETE">Remover</button>
+						<button class="link" name="_method" value="DELETE">Deletar</button>
 					</form>
 				</td>
 			</tr>

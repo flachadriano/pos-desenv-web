@@ -11,14 +11,25 @@
 
 <body>
 	<form action="<c:url value="${transaction.id}"/>" method="POST">
-		Categoria: <input type="text" name="transaction.category_id"
-			value="${transaction.category_id}" /><br /> Data: <input
-			type="text" name="transaction.due_date"
-			value="${transaction.due_date}" /><br /> Valor: <input type="text"
-			name="transaction.value" value="${transaction.value}" /><br />
+		Categoria: <select name="transaction.category_id">
+			<c:forEach var="category" items="${categories}">
+				<option value="${category.id}"
+					<c:if
+						test="${transaction.category_id == category.id}"> selected="true" </c:if>>${category.name}
+				</option>
+			</c:forEach>
+		</select><br />
+		<!-- c -->
+		Data: <input type="text" name="transaction.due_date"
+			value="${transaction.due_date}" /><br />
+		<!-- c -->
+		Valor: <input type="text" name="transaction.value"
+			value="${transaction.value}" /><br />
+		<!-- c -->
 		Descrição: <input type="text" name="transaction.description"
-			value="${transaction.description}" /><br /> <input type="submit"
-			value="Atualizar" />
+			value="${transaction.description}" /><br />
+		<!-- c -->
+		<input type="submit" value="Atualizar" />
 	</form>
 </body>
 

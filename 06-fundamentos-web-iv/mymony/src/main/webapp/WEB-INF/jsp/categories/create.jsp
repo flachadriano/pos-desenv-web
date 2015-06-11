@@ -11,8 +11,9 @@
 
 <body>
 	<form action="" method="POST">
-		Nome: <input type="text" name="category.name" /><br /> <input
-			type="submit" value="Criar" />
+		Nome: <input type="text" name="category.name" /><br />
+		<!-- c -->
+		<input type="submit" value="Criar" />
 	</form>
 </body>
 

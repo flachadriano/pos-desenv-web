@@ -11,11 +11,19 @@
 
 <body>
 	<form action="" method="POST">
-		Categoria: <input type="text" name="transaction.category_id" /><br />
-		Data: <input type="text" name="transaction.due_date" /><br /> Valor:
-		<input type="text" name="transaction.value" /><br /> Descrição: <input
-			type="text" name="transaction.description" /><br /> <input
-			type="submit" value="Criar" />
+		Categoria: <select name="transaction.category_id">
+			<c:forEach var="category" items="${categories}">
+				<option value="${category.id}">${category.name}</option>
+			</c:forEach>
+		</select>
+		<!-- c -->
+		Data: <input type="text" name="transaction.due_date" /><br />
+		<!-- c -->
+		Valor: <input type="text" name="transaction.value" /><br />
+		<!-- c -->
+		Descrição: <input type="text" name="transaction.description" /><br />
+		<!-- c -->
+		<input type="submit" value="Criar" />
 	</form>
 </body>
 

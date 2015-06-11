@@ -12,6 +12,7 @@
 <body>
 	<form action="<c:url value="${category.id}"/>" method="POST">
 		Nome: <input type="text" name="category.name" value="${category.name}" /><br />
+		<!-- c -->
 		<input type="submit" value="Atualizar" />
 	</form>
 </body>

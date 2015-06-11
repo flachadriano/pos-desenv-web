@@ -24,11 +24,9 @@ public class CategoriesController {
 	@Inject
 	private Result result;
 
-	@Get("index")
-	public void index() throws ClassNotFoundException, SQLException {
+	public static List<Category> getCategories() throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
 		String sql = "select id, name from categories";
-		show(sql);
 		ResultSet rs = Server.executeQuery(connection, sql);
 		List<Category> categories = new LinkedList<Category>();
 
@@ -39,8 +37,13 @@ public class CategoriesController {
 			categories.add(category);
 		}
 
-		result.include("categories", categories);
 		Server.closeConnection(connection);
+		return categories;
+	}
+
+	@Get("index")
+	public void index() throws ClassNotFoundException, SQLException {
+		result.include("categories", getCategories());
 	}
 
 	@Get("create")
@@ -51,7 +54,6 @@ public class CategoriesController {
 	public void create(Category category) throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
 		String sql = "insert into categories(name) values('" + category.getName() + "')";
-		show(sql);
 		Server.executeAndCommit(connection, sql);
 		Server.closeConnection(connection);
 
@@ -62,7 +64,6 @@ public class CategoriesController {
 	public void update(Long id) throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
 		String sql = "select id, name from categories where id = " + id;
-		show(sql);
 		ResultSet rs = Server.executeQuery(connection, sql);
 
 		rs.next();
@@ -78,7 +79,6 @@ public class CategoriesController {
 	public void update(Long id, Category category) throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
 		String sql = "update categories set name = '" + category.getName() + "' where id = " + id;
-		show(sql);
 		Server.executeAndCommit(connection, sql);
 		Server.closeConnection(connection);
 
@@ -89,15 +89,10 @@ public class CategoriesController {
 	public void destroy(Long id) throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
 		String sql = "delete from categories where id = " + id;
-		show(sql);
 		Server.executeAndCommit(connection, sql);
 		Server.closeConnection(connection);
 
 		result.redirectTo(CategoriesController.class).index();
-	}
-
-	private void show(String value) {
-		System.out.println("value = " + value);
 	}
 
 }

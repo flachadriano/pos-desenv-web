@@ -18,10 +18,12 @@ public class Server {
 	}
 
 	public static ResultSet executeQuery(Connection connection, String sql) throws SQLException {
+		show(sql);
 		return connection.createStatement().executeQuery(sql);
 	}
 	
 	public static void executeAndCommit(Connection connection, String sql) throws SQLException {
+		show(sql);
 		connection.createStatement().executeUpdate(sql);
 	}
 
@@ -29,5 +31,9 @@ public class Server {
 		if (connection != null)
 			connection.close();
 	}
-	
+
+	public static void show(String value) {
+		System.out.println("value = " + value);
+	}
+
 }

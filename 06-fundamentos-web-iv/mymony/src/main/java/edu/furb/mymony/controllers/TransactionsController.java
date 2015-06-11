@@ -47,7 +47,8 @@ public class TransactionsController {
 	}
 
 	@Get("create")
-	public void create() {
+	public void create() throws ClassNotFoundException, SQLException {
+		result.include("categories", CategoriesController.getCategories());
 	}
 
 	@Post("create")
@@ -78,6 +79,7 @@ public class TransactionsController {
 		transaction.setDescription(rs.getString(5));
 		result.include("transaction", transaction);
 
+		result.include("categories", CategoriesController.getCategories());
 		Server.closeConnection(connection);
 	}
 

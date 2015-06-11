@@ -33,7 +33,7 @@ public class Server {
 	}
 
 	public static void show(String value) {
-		System.out.println("value = " + value);
+		System.out.println("SQL -> " + value);
 	}
 
 }

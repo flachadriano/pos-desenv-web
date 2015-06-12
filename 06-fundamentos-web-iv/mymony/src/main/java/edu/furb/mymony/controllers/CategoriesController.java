@@ -1,4 +1,4 @@
-package edu.furb.mymony;
+package edu.furb.mymony.controllers;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,12 +14,14 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
-import edu.furb.mymony.model.Category;
+import edu.furb.mymony.Server;
+import edu.furb.mymony.models.Category;
 
 @Controller
 @Path("categories")
 public class CategoriesController {
 
+<<<<<<< HEAD:06-fundamentos-web-iv/mymony/src/main/java/edu/furb/mymony/CategoriesController.java
     @Inject
     private Result result;
 
@@ -92,5 +94,80 @@ public class CategoriesController {
     private void show(String value) {
         System.out.println("value = " + value);
     }
+=======
+	@Inject
+	private Result result;
+
+	public static List<Category> getCategories() throws ClassNotFoundException, SQLException {
+		Connection connection = Server.getConnection();
+		String sql = "select id, name from categories";
+		ResultSet rs = Server.executeQuery(connection, sql);
+		List<Category> categories = new LinkedList<Category>();
+
+		while (rs.next()) {
+			Category category = new Category();
+			category.setId(rs.getLong(1));
+			category.setName(rs.getString(2));
+			categories.add(category);
+		}
+
+		Server.closeConnection(connection);
+		return categories;
+	}
+
+	@Get("index")
+	public void index() throws ClassNotFoundException, SQLException {
+		result.include("categories", getCategories());
+	}
+
+	@Get("create")
+	public void create() {
+	}
+
+	@Post("create")
+	public void create(Category category) throws ClassNotFoundException, SQLException {
+		Connection connection = Server.getConnection();
+		String sql = "insert into categories(name) values('" + category.getName() + "')";
+		Server.executeAndCommit(connection, sql);
+		Server.closeConnection(connection);
+
+		result.redirectTo(CategoriesController.class).index();
+	}
+
+	@Get("update/{id}")
+	public void update(Long id) throws ClassNotFoundException, SQLException {
+		Connection connection = Server.getConnection();
+		String sql = "select id, name from categories where id = " + id;
+		ResultSet rs = Server.executeQuery(connection, sql);
+
+		rs.next();
+		Category category = new Category();
+		category.setId(rs.getLong(1));
+		category.setName(rs.getString(2));
+		result.include("category", category);
+
+		Server.closeConnection(connection);
+	}
+
+	@Post("update/{id}")
+	public void update(Long id, Category category) throws ClassNotFoundException, SQLException {
+		Connection connection = Server.getConnection();
+		String sql = "update categories set name = '" + category.getName() + "' where id = " + id;
+		Server.executeAndCommit(connection, sql);
+		Server.closeConnection(connection);
+
+		result.redirectTo(CategoriesController.class).index();
+	}
+
+	@Delete("destroy/{id}")
+	public void destroy(Long id) throws ClassNotFoundException, SQLException {
+		Connection connection = Server.getConnection();
+		String sql = "delete from categories where id = " + id;
+		Server.executeAndCommit(connection, sql);
+		Server.closeConnection(connection);
+
+		result.redirectTo(CategoriesController.class).index();
+	}
+>>>>>>> c8b84f1234f1de6bc615f4d14759642f53c8f5f5:06-fundamentos-web-iv/mymony/src/main/java/edu/furb/mymony/controllers/CategoriesController.java
 
 }

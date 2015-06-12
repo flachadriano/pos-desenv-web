@@ -1,4 +1,4 @@
-package edu.furb.mymony.model;
+package edu.furb.mymony.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

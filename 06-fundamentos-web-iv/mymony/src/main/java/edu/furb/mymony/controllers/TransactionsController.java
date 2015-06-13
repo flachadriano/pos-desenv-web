@@ -24,8 +24,8 @@ public class TransactionsController {
 	@Inject
 	private Result result;
 
-	@Get("index")
-	public void index() throws ClassNotFoundException, SQLException {
+	@Get("list")
+	public void list() throws ClassNotFoundException, SQLException {
 		Connection connection = Server.getConnection();
 		String sql = "select id, category_id, due_date, value, description from transactions";
 		show(sql);
@@ -60,7 +60,7 @@ public class TransactionsController {
 		Server.executeAndCommit(connection, sql);
 		Server.closeConnection(connection);
 
-		result.redirectTo(TransactionsController.class).index();
+		result.redirectTo(TransactionsController.class).list();
 	}
 
 	@Get("update/{id}")
@@ -92,7 +92,7 @@ public class TransactionsController {
 		Server.executeAndCommit(connection, sql);
 		Server.closeConnection(connection);
 
-		result.redirectTo(TransactionsController.class).index();
+		result.redirectTo(TransactionsController.class).list();
 	}
 
 	@Delete("destroy/{id}")
@@ -103,7 +103,7 @@ public class TransactionsController {
 		Server.executeAndCommit(connection, sql);
 		Server.closeConnection(connection);
 
-		result.redirectTo(TransactionsController.class).index();
+		result.redirectTo(TransactionsController.class).list();
 	}
 
 	private void show(String value) {

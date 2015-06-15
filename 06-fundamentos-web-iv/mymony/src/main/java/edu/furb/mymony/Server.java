@@ -7,7 +7,8 @@ import java.sql.SQLException;
 
 public class Server {
 
-	public static final String DB = "/Users/flachadriano/Github/pos-desenv-web/06-fundamentos-web-iv/mymony/database/mymony";
+    //public static final String DB = "/Users/flachadriano/Github/pos-desenv-web/06-fundamentos-web-iv/mymony/database/mymony";
+    public static final String DB = "D:/Repositories/pos-desenv-web/06-fundamentos-web-iv/mymony/src/main/java/edu/furb/mymony/database/mymony";
 
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
 		// load the sqlite-JDBC driver using the current class loader

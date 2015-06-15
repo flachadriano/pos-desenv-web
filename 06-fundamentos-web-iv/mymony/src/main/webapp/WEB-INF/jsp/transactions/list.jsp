@@ -38,21 +38,44 @@
             </div>
         </div>
     </nav>
-    <div class="container text-center" role="main">
-        <form class="form-horizontal" action="<c:url value="${category.id}"/>" method="POST">
-            <fieldset>
-                <legend>Transaction ${category.id}</legend> 
-                <div class="control-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" name="category.name" id="name" value="${category.name}" />
-                    </div>
-                    <br />
-                    <input class="btn-primary" type="submit" value="Atualizar" />
-                </div>
-            </fieldset>
-        </form>
+    <div class="container theme-showcase" role="main">
+        <h1 class="text-center">Transactions</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Date</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Value</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <c:forEach var="transaction" items="${transactions}">
+                <tr>
+                    <td class="text-center">${transaction.id}</td>
+                    <td class="text-center">
+                    <c:forEach var="category" items="${categories}">
+                        <c:if test="${transaction.category_id == category.id}"> 
+                            ${category.name}
+                        </c:if>
+                    </c:forEach>                    
+                    </td>
+                    <td class="text-center">${transaction.due_date}</td>
+                    <td class="text-center">${transaction.description}</td>
+                    <td class="text-center">${transaction.value}</td>
+                    <td class="text-center">
+                        <form action="<c:url value="destroy/${transaction.id}"/>" method="POST">
+                            <div class="btn-group">
+                                <a href="update/${transaction.id}" value="${transaction.id}" name="Edit" class="btn btn-primary btn-xs ">Edit</a>
+                                <button class="btn btn-danger btn-xs" name="_method" value="DELETE">Delete</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+        <a class="pull-right" href="create"><button class="btn-primary">Add transaction</button></a>
     </div>
 </body>
-
 </html>

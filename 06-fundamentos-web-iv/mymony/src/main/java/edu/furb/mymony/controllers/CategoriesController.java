@@ -21,78 +21,78 @@ import edu.furb.mymony.models.Category;
 @Path("categories")
 public class CategoriesController {
 
-	@Inject
-	private Result result;
+    @Inject
+    private Result result;
 
-	public static List<Category> getCategories() throws ClassNotFoundException, SQLException {
-		Connection connection = Server.getConnection();
-		String sql = "select id, name from categories";
-		ResultSet rs = Server.executeQuery(connection, sql);
-		List<Category> categories = new LinkedList<Category>();
+    public static List<Category> getCategories() throws ClassNotFoundException, SQLException {
+        Connection connection = Server.getConnection();
+        String sql = "select id, name from categories";
+        ResultSet rs = Server.executeQuery(connection, sql);
+        List<Category> categories = new LinkedList<Category>();
 
-		while (rs.next()) {
-			Category category = new Category();
-			category.setId(rs.getLong(1));
-			category.setName(rs.getString(2));
-			categories.add(category);
-		}
+        while (rs.next()) {
+            Category category = new Category();
+            category.setId(rs.getLong(1));
+            category.setName(rs.getString(2));
+            categories.add(category);
+        }
 
-		Server.closeConnection(connection);
-		return categories;
-	}
+        Server.closeConnection(connection);
+        return categories;
+    }
 
-	@Get("index")
-	public void index() throws ClassNotFoundException, SQLException {
-		result.include("categories", getCategories());
-	}
+    @Get("list")
+    public void list() throws ClassNotFoundException, SQLException {
+        result.include("categories", getCategories());
+    }
 
-	@Get("create")
-	public void create() {
-	}
+    @Get("create")
+    public void create() {
+    }
 
-	@Post("create")
-	public void create(Category category) throws ClassNotFoundException, SQLException {
-		Connection connection = Server.getConnection();
-		String sql = "insert into categories(name) values('" + category.getName() + "')";
-		Server.executeAndCommit(connection, sql);
-		Server.closeConnection(connection);
+    @Post("create")
+    public void create(Category category) throws ClassNotFoundException, SQLException {
+        Connection connection = Server.getConnection();
+        String sql = "insert into categories(name) values('" + category.getName() + "')";
+        Server.executeAndCommit(connection, sql);
+        Server.closeConnection(connection);
 
-		result.redirectTo(CategoriesController.class).index();
-	}
+        result.redirectTo(CategoriesController.class).list();
+    }
 
-	@Get("update/{id}")
-	public void update(Long id) throws ClassNotFoundException, SQLException {
-		Connection connection = Server.getConnection();
-		String sql = "select id, name from categories where id = " + id;
-		ResultSet rs = Server.executeQuery(connection, sql);
+    @Get("update/{id}")
+    public void update(Long id) throws ClassNotFoundException, SQLException {
+        Connection connection = Server.getConnection();
+        String sql = "select id, name from categories where id = " + id;
+        ResultSet rs = Server.executeQuery(connection, sql);
 
-		rs.next();
-		Category category = new Category();
-		category.setId(rs.getLong(1));
-		category.setName(rs.getString(2));
-		result.include("category", category);
+        rs.next();
+        Category category = new Category();
+        category.setId(rs.getLong(1));
+        category.setName(rs.getString(2));
+        result.include("category", category);
 
-		Server.closeConnection(connection);
-	}
+        Server.closeConnection(connection);
+    }
 
-	@Post("update/{id}")
-	public void update(Long id, Category category) throws ClassNotFoundException, SQLException {
-		Connection connection = Server.getConnection();
-		String sql = "update categories set name = '" + category.getName() + "' where id = " + id;
-		Server.executeAndCommit(connection, sql);
-		Server.closeConnection(connection);
+    @Post("update/{id}")
+    public void update(Long id, Category category) throws ClassNotFoundException, SQLException {
+        Connection connection = Server.getConnection();
+        String sql = "update categories set name = '" + category.getName() + "' where id = " + id;
+        Server.executeAndCommit(connection, sql);
+        Server.closeConnection(connection);
 
-		result.redirectTo(CategoriesController.class).index();
-	}
+        result.redirectTo(CategoriesController.class).list();
+    }
 
-	@Delete("destroy/{id}")
-	public void destroy(Long id) throws ClassNotFoundException, SQLException {
-		Connection connection = Server.getConnection();
-		String sql = "delete from categories where id = " + id;
-		Server.executeAndCommit(connection, sql);
-		Server.closeConnection(connection);
+    @Delete("destroy/{id}")
+    public void destroy(Long id) throws ClassNotFoundException, SQLException {
+        Connection connection = Server.getConnection();
+        String sql = "delete from categories where id = " + id;
+        Server.executeAndCommit(connection, sql);
+        Server.closeConnection(connection);
 
-		result.redirectTo(CategoriesController.class).index();
-	}
+        result.redirectTo(CategoriesController.class).list();
+    }
 
 }

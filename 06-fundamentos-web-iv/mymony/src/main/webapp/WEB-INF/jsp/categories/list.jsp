@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -38,21 +37,34 @@
             </div>
         </div>
     </nav>
-    <div class="container text-center" role="main">
-        <form class="form-horizontal" action="<c:url value="${category.id}"/>" method="POST">
-            <fieldset>
-                <legend>Transaction ${category.id}</legend> 
-                <div class="control-group">
-                    <label class="control-label" for="name">Name</label>
-                    <div class="controls">
-                        <input type="text" name="category.name" id="name" value="${category.name}" />
-                    </div>
-                    <br />
-                    <input class="btn-primary" type="submit" value="Atualizar" />
-                </div>
-            </fieldset>
-        </form>
-    </div>
+    <div class="container theme-showcase" role="main">
+        <h1 class="text-center">Categories</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">Id</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="category" items="${categories}">
+                    <tr>
+                        <td class="text-center">${category.id}</td>
+                        <td class="text-center">${category.name}</td>
+                        <td class="text-center">
+                            <form action="<c:url value="destroy/${category.id}"/>" method="POST">
+                                <div class="btn-group">
+                                    <a href="update/${category.id}" value="${category.id}" name="Edit" class="btn btn-primary btn-xs ">Edit</a>
+                                    <button class="btn btn-danger btn-xs" name="_method" value="DELETE">Delete</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        <a href="create" class="pull-right"><button class="btn-primary" >Add Category</button></a>
+    </div>   
 </body>
-
 </html>

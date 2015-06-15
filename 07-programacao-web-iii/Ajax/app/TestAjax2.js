@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	document.getElementById("btnLogXml").onclick = btnLoadXmlClick;
 })
 
+function callback(ajax) {
+}
+
 function getFile(filename, callback, mimeType) {
 	var obj = getAjax();
 
@@ -35,15 +38,15 @@ function getFile(filename, callback, mimeType) {
 }
 
 function btnLoadTextClick() {
-	getFile("msg.txt", function(ajax) {
+	getFile("files/msg.txt", function(ajax) {
 		log(ajax.responseText);
 	}, "text/html");
 }
 
 function btnLoadJsonClick() {
-	alert("oi");
+	alert("#TODO load JSON");
 }
 
 function btnLoadXmlClick() {
-	alert("oi");
+	alert("#TODO load XML");
 }

@@ -10,10 +10,10 @@ function testAjax() {
 	var obj = getAjax();
 
 	obj.onreadystatechange = function() {
-		log("readState: " + obj.readstate + ", status: " + obj.status
+		log("readState: " + obj.readyState + ", status: " + obj.status
 				+ ", responseText: " + obj.responseText);
 	}
 
-	obj.open("GET", "msg.txt");
+	obj.open("GET", "files/msg.txt");
 	obj.send(null);
 }

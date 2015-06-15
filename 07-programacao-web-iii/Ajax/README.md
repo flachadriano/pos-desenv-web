@@ -1,4 +1,4 @@
-HOW TO INSTALL DOCKER
+# HOW TO INSTALL DOCKER
 
 brew update
 
@@ -12,7 +12,7 @@ boot2docker start
 
 docker run hello-world
 
-RUN PROJECT
+# RUN PROJECT
 
 Acces the folder of this project and run the command:
 - docker build .
@@ -23,14 +23,14 @@ After finish the command will be shown something like this:
 Get the build hash and use it into this command
 - docker run -d -p 80:80 43088b2966aa
 
-UPDATE PROJECT AFTER CHANGES
+# UPDATE PROJECT AFTER CHANGES
 
 Kill all docker processes:
 - docker kill $(docker ps -aq)
 
 And then redo the RUN PROJECT
 
-ACESSING PROJECT THROUGH BROWSER
+# ACESSING PROJECT THROUGH BROWSER
 
 Get the ip of the docker server:
 - boot2docker ip

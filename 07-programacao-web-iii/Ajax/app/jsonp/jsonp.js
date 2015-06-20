@@ -3,6 +3,9 @@ $(document).ready(function() {
 });
 
 function loadData() {
+	$("#data").empty();
+	$("#data").html('<span class="loading">Carregando...</span>');
+	
 	$.getJSON("http://www.koiote.com.br/dojsonp.php?koiote_json_callback=?")
 			.done(function(data) {
 				processData(data);
@@ -35,8 +38,13 @@ function processData(data) {
 			html += "<td>" + obj.name + "</td>";
 			html += "<td>" + obj.email + "</td>";
 			html += "</tr>";
+		} else {
+			return false;
 		}
 	});
 
 	$("#data").append(html);
+	$("#data table thead tr").css("backgroundColor", "#e3f1ff");
+	$("#data table tbody tr:odd").css("backgroundColor", "#f6faff");
+	$("#data tbody td:first-child").css("backgroundColor", "#e3f1ff");
 }

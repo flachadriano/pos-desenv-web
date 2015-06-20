@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+
+fieldset {
+	padding: 10px 15px;
+	border: 1px solid #ddd;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+legend {
+	margin-bottom: 10px;
+}
+
+table {
+	width: 600px;
+	border-collapse: collapse;
+	border: 1px solid #333;
+}
+
+table tr td {
+	border: 1px solid #666;
+	padding: 3px 8px;
+}
+
+table tr th {
+	border: 1px solid #333;
+	padding: 3px 8px;
+}
+
+label {
+	margin-right: 15px;
+}
+
+#dados {
+	margin-top: 15px;
+}

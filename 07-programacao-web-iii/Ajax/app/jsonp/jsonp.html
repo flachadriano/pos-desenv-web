@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSONP</title>
+<link rel="stylesheet" type="text/css" href="jsonp.css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="jsonp.js"></script>
+</head>
+<body>
+
+	<h1>Exemplo jQuery com JSONP</h1>
+
+	<fieldset>
+		<legend>Escolha umas das opções</legend>
+		<label>10<input type="radio" name="records" value="10"
+			checked="checked"></label>
+		<!-- c -->
+		<label>100<input type="radio" name="records" value="100"></label>
+		<!-- c -->
+		<label><span>Todos</span><input type="radio" name="records"></label>
+		<!-- c -->
+		<input type="button" id="btnLoad" value="Carregar">
+		<!-- c -->
+		<div id="data"></div>
+	</fieldset>
+
+</body>
+</html>

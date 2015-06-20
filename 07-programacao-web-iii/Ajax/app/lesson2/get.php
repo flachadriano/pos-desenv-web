@@ -5,4 +5,3 @@ $name = $_GET ["name"];
 $lastName = $_GET ["lastName"];
 
 echo $name . " " . $lastName;
-//echo "$name $lastName";

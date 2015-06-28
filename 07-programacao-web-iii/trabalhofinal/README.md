@@ -29,7 +29,7 @@ Start the MAC shell, only to MAC
 # RUN PROJECT
 
 Acces the folder of this project and run the command:
-$ docker build .
+$ docker build -t trabalhofinal .
 
 Run the builded project
 $ docker run -d -p 80:80 trabalhofinal
@@ -42,7 +42,7 @@ $ docker kill $(docker ps -q)
 And then redo the RUN PROJECT
 
 The project can be updated with the commands into only one line:
-$ docker kill $(docker ps -q); docker build .; docker run -d -p 80:80 trabalhofinal
+$ docker kill $(docker ps -q); docker build -t trabalhofinal:latest .; docker run -d -p 80:80 trabalhofinal
 
 # ACESSING PROJECT THROUGH BROWSER
 
@@ -56,6 +56,11 @@ Put into the browser:
 - http://192.168.59.103/app
 	
 In this way will be accessed index.html
+
+# SHOW LOGS
+
+When runa  project, the last output is a hash, get this hash and send as parameter, e.g.:
+$ docker logs 692e618da4e7fbbf0487c836abed50aa240be1a4910f4163518b90a7bfb12303
 
 # REMOVING ALL IMAGES
 

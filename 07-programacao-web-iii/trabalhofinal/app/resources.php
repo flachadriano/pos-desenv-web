@@ -1,17 +1,22 @@
 <?php
-$result = "";
 $dir = "resources/";
+$first_file = true;
+
+echo "resources:[";
 
 if ($handle = opendir ( $dir )) {
 	while ( false !== ($filename = readdir ( $handle )) ) {
-		if ($filename == "." && $filename = "..") {
-			continue;
+		if ($filename !== "." && $filename !== "..") {
+			if ($first_file) {
+				$first_file = false;
+			} else {
+				echo ",";
+			}
+			
+			echo file_get_contents ( $dir . $filename );
 		}
-		
-		echo $filename;
-		echo file_get_contents ( $dir . $filename );
 	}
 	closedir ( $handle );
 }
 
-echo $result;
+echo "]";

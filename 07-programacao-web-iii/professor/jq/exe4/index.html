@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Ajax com jQuery</title>
+<script type="text/javascript" src="../jquery-2.1.4.js"></script>
+<script type="text/javascript" src="ajax.js"></script>
+<style type="text/css" media="all">
+fieldset {
+	padding: 10px 15px;
+	border: 1px solid #ddd;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+legend {
+	margin-bottom: 10px;
+}
+
+
+table {
+	width: 600px;
+	border-collapse: collapse;
+	border: 1px solid #333;
+}
+
+table tr td {
+	border: 1px solid #666;
+	padding: 3px 8px;
+}
+
+table tr th {
+	border: 1px solid #333;
+	padding: 3px 8px;
+}
+
+label {
+	margin-right: 15px;
+}
+
+#dados{
+ 	margin-top: 15px;
+}
+
+</style>
+</head>
+<body>
+	<h1>Exemplo de Ajax com jQuery</h1>
+	<fieldset>
+		<legend>Escolha uma das opções</legend>
+		<p>Número de registros a exibir</p>
+		<label><input type="radio" value="2" name="registros" checked="checked">2</label> 
+		<label><input type="radio" value="4" name="registros">4</label> 
+		<label><input type="radio" value="6" name="registros">6</label> 
+		<label><input type="radio" value="" name="registros"><span>Todos</span></label>
+		<button type="button" id="btnLoad">Carregar registros</button>
+		<div id="dados"></div>
+	</fieldset>
+
+</body>
+</html>

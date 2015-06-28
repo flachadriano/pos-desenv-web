@@ -1,7 +1,7 @@
 <?php
 header('Contente-type: application/json, charset:utf-8');
 
-$dir = "resources/";
+$dir = "../resources/";
 $first_file = true;
 
 echo "[";

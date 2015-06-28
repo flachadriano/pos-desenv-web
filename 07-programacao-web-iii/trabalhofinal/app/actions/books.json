@@ -1,0 +1,5 @@
+{
+	"label": "Criar",
+	"action": "form",
+	"url": "form.html"
+}

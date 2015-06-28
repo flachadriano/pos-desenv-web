@@ -1,4 +1,5 @@
 {
 	"label": "Livros",
-	"url": "books"
+	"model": "books",
+	"url": "list.html"
 }

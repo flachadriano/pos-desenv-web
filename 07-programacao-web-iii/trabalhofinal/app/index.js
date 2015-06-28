@@ -3,13 +3,18 @@ $(document).ready(function() {
 });
 
 function buildResourcesTable() {
-	$.get("resources.php", null, function(data) {
+	$.get("controllers/resources.php", null, function(data) {
 		var resources = JSON.parse(data);
 
 		for (var i = 0; i < resources.length; i++) {
-			$("#home_resources").html(
-					"<a href=" + resources[i].url + ">"
-							+ resources[i].label + "</a>");
+			var link = "<a ";
+			link += "href=" + resources[i].url + "?";
+			link += "model=" + resources[i].model;
+			link += ">";
+			link += resources[i].label;
+			link += "</a>";
+
+			$("#content").html(link);
 		}
 	});
 }

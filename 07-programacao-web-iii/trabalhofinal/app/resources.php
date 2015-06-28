@@ -1,8 +1,10 @@
 <?php
+header('Contente-type: application/json, charset:utf-8');
+
 $dir = "resources/";
 $first_file = true;
 
-echo "resources:[";
+echo "[";
 
 if ($handle = opendir ( $dir )) {
 	while ( false !== ($filename = readdir ( $handle )) ) {

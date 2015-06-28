@@ -1,4 +1,4 @@
 {
-	label: "Livros",
-	url: "/books"
+	"label": "Livros",
+	"url": "books"
 }

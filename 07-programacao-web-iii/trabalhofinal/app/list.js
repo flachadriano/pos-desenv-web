@@ -27,8 +27,34 @@ function buildList() {
 		}
 	});
 
-	$.get("controllers/records.php", {
+	$.get("controllers/models.php", {
 		model : getURLParameter("model")
 	}, function(data) {
+		var model = JSON.parse(data);
+		var table = "<table>";
+
+		table += "<tr>";
+		for (var i = 0; i < model.length; i++) {
+			table += "<th>" + model[i].label + "</th>";
+		}
+		table += "</tr>";
+
+		$.get("controllers/records.php", {
+			model : getURLParameter("model")
+		}, function(data) {
+			var records = JSON.parse(data);
+
+			for (var i = 0; i < records.length; i++) {
+				table += "<tr>";
+				$.each(records[i], function(key, value) {
+					table += "<td>" + value + "</td>";
+				});
+				table += "</tr>";
+			}
+
+			table += "</table>";
+			$("#content").append(table);
+		});
 	});
+
 }

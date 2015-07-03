@@ -3,4 +3,18 @@ header ( 'Contente-type: application/json, charset:utf-8' );
 
 session_start ();
 
-echo $_SESSION [$_GET ["model"]] [1];
+$first = true;
+
+echo "[";
+
+foreach ( $_SESSION [$_GET ["model"]] as $record ) {
+	if ($first) {
+		$first = false;
+	} else {
+		echo ",";
+	}
+	
+	echo $record;
+}
+
+echo "]";

@@ -1,4 +1,9 @@
 {
+	"label": "Atualizar lista",
+	"action": "list",
+	"url": "list.html"
+},
+{
 	"label": "Criar",
 	"action": "form",
 	"url": "form.html"

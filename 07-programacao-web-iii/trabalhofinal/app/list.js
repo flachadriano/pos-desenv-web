@@ -21,9 +21,14 @@ function buildList() {
 			link += "model=" + getURLParameter("model");
 			link += ">";
 			link += actions[i].label;
-			link += "</a>";
+			link += "</a><br/>";
 
-			$("#content").html(link);
+			$("#content").append(link);
 		}
+	});
+
+	$.get("controllers/records.php", {
+		model : getURLParameter("model")
+	}, function(data) {
 	});
 }

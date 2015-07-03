@@ -31,15 +31,20 @@ function buildForm() {
 function save() {
 	$.ajax({
 		type : "POST",
-		url : "controllers/validate.php?model=" + getURLParameter("model"),
+		url : "controllers/create.php?model=" + getURLParameter("model"),
 		dataType : "json",
 		data : $("#form").serialize(),
 		success : function(errors, status, xhr) {
-			var message = "";
-			for (var i = 0; i < errors.length; i++) {
-				message += errors[i].field + ": " + errors[i].msg + "\r\n";
+			if (errors.length == 0) {
+				window.location.href = "list.html?model="
+						+ getURLParameter("model");
+			} else {
+				var message = "";
+				for (var i = 0; i < errors.length; i++) {
+					message += errors[i].field + ": " + errors[i].msg + "\r\n";
+				}
+				$("#error").val(message);
 			}
-			$("#error").val(message);
 		},
 		error : function(xhr, status, error) {
 			$("#error").val(error);

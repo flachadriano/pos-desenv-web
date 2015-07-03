@@ -33,9 +33,16 @@ function save() {
 		type : "POST",
 		url : "controllers/validate.php?model=" + getURLParameter("model"),
 		dataType : "json",
-		async : false,
 		data : $("#form").serialize(),
-		success : function() {
+		success : function(errors, status, xhr) {
+			var message = "";
+			for (var i = 0; i < errors.length; i++) {
+				message += errors[i].field + ": " + errors[i].msg + "\r\n";
+			}
+			$("#error").val(message);
+		},
+		error : function(xhr, status, error) {
+			$("#error").val(error);
 		}
 	});
 }

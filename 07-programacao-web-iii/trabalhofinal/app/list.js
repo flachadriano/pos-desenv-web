@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	buildList();
+	newBuildList();
 });
 
 function getURLParameter(name) {
@@ -7,6 +8,14 @@ function getURLParameter(name) {
 			+ '([^&;]+?)(&|#|;|$)').exec(location.search) || [ , "" ])[1]
 			.replace(/\+/g, '%20'))
 			|| null;
+}
+
+function newBuildList() {
+	$.get("controllers/library.php", {
+		type : "index",
+		model : getURLParameter("model")
+	}, function(data) {
+	});
 }
 
 function buildList() {

@@ -1,0 +1,15 @@
+[{
+	"label": "Nome",
+	"name": "name",
+	"null": "false"
+},
+{
+	"label": "Autor",
+	"name": "author",
+	"null": "false"
+},
+{
+	"label": "Descrição",
+	"name": "description",
+	"null": "true"
+}]

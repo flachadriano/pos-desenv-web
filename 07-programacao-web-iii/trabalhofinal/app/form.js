@@ -38,26 +38,27 @@ function buildForm() {
 }
 
 function save() {
+	var model = getURLParameter("model");
+	var id = getURLParameter("id");
+	var type = id ? "update" : "create";
+	var params = "type=" + type + "&model=" + model + "&id=" + id;
+
 	$.ajax({
 		type : "POST",
-		url : "controllers/create.php?model=" + getURLParameter("model")
-				+ "&id=" + getURLParameter("id"),
+		url : "controllers/library.php?" + params,
 		dataType : "json",
 		data : $("#form").serialize(),
-		success : function(errors, status, xhr) {
-			if (errors.length == 0) {
-				window.location.href = "list.html?model="
-						+ getURLParameter("model");
+		success : function(data, status, xhr) {
+			$("#error").val("");
+
+			if (data.success == true) {
+				window.location.href = data.url + "?model=" + model;
 			} else {
-				var message = "";
-				for (var i = 0; i < errors.length; i++) {
-					message += errors[i].field + ": " + errors[i].msg + "\r\n";
-				}
-				$("#error").val(message);
+				$.each(data.errors, function(field, error) {
+					$("#error").val(
+							$("#error").val() + field + ": " + error + "\r\n");
+				})
 			}
-		},
-		error : function(xhr, status, error) {
-			$("#error").val(error);
 		}
 	});
 }

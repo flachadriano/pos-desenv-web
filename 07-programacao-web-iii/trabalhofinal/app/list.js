@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	buildList();
 	newBuildList();
 });
 
@@ -13,9 +12,23 @@ function getURLParameter(name) {
 function newBuildList() {
 	$.get("controllers/library.php", {
 		type : "index",
+		metadata : true,
 		model : getURLParameter("model")
 	}, function(data) {
+		createColumns(JSON.parse(data));
 	});
+}
+
+function createColumns(columns) {
+	var table = "<table>";
+
+	table += "<tr>";
+	$.each(columns, function(key, column) {
+		table += "<th>" + column.label + "</th>";
+	});
+	table += "</tr>";
+	
+	$("#content").append(table);
 }
 
 function buildList() {

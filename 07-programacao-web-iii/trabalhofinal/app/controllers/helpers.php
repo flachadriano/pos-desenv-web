@@ -11,6 +11,9 @@ function getVal($attr) {
 function loadModel() {
 	return loadJson ( "../schema/models/" . getVal ( "model" ) . ".json" );
 }
+function loadGridMetadata() {
+	return loadJson ( "../schema/grid/" . getVal ( "model" ) . ".json" );
+}
 function loadJson($path) {
 	return json_decode ( file_get_contents ( $path ) );
 }

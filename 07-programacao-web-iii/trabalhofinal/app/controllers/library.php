@@ -5,12 +5,17 @@ session_start ();
 
 require "helpers.php";
 require "database.php";
+
 require "actions/index.php";
 require "actions/create.php";
 
 switch (getVal ( "type" )) {
 	case "index" :
-		indexRecords ();
+		if (getVal ( "metadata" )) {
+			gridMetaData ();
+		} else {
+			indexRecords ();
+		}
 		break;
 	case "create" :
 		createRecord ();

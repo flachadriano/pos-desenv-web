@@ -28,6 +28,10 @@
 					<h:commandLink action="#{contatoBean.editar}" value="Editar">
 						<f:setPropertyActionListener target="#{item}" value="#{item}" />
 					</h:commandLink>
+					|
+					<h:commandLink action="#{contatoBean.excluir}" value="Excluir">
+						<f:setPropertyActionListener target="#{item}" value="#{item}" />
+					</h:commandLink>
 				</h:column>
 			</h:dataTable>
 		</h:form>

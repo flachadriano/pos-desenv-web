@@ -34,6 +34,12 @@ public class ContatoBean {
 		return "/contatos/index?face-redirect=true";
 	}
 
+	public String excluir() {
+		contato = (Contato) selecionado.getRowData();
+		dao.excluir(contato);
+		return "/contatos/index?face-redirect=true";
+	}
+
 	public Contato getContato() {
 		return contato;
 	}

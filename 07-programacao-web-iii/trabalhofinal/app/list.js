@@ -34,7 +34,7 @@ function buildList() {
 		$.get("controllers/models.php", {
 			model : getURLParameter("model")
 		}, function(data) {
-			var model = JSON.parse(data);
+			var model = JSON.parse(data).fields;
 			var table = "<table>";
 
 			table += "<tr>";

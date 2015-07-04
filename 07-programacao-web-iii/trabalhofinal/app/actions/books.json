@@ -15,4 +15,10 @@
 	"label": "Editar",
 	"action": "edit",
 	"url": "form.html"
+},
+{
+	"form": "true",
+	"label": "Deletar",
+	"action": "delete",
+	"url": "list.html"
 }

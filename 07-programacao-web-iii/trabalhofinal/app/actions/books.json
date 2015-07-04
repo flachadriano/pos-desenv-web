@@ -1,10 +1,18 @@
 {
+	"form": "false",
 	"label": "Atualizar lista",
 	"action": "list",
 	"url": "list.html"
 },
 {
+	"form": "false",
 	"label": "Criar",
 	"action": "form",
+	"url": "form.html"
+},
+{
+	"form": "true",
+	"label": "Editar",
+	"action": "edit",
 	"url": "form.html"
 }

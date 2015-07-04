@@ -27,20 +27,13 @@ foreach ( $model as $field ) {
 echo "]";
 
 if (! $error) {
-	$first = true;
-	
 	if (! $_SESSION [$_GET ["model"]]) {
 		$_SESSION [$_GET ["model"]] = [ ];
 	}
 	
-	$record = "{";
+	$record = '{"id": ' . '"' . ($_SESSION [$_GET ["model"]] . length + 1) . '"';
 	foreach ( $model as $field ) {
-		if ($first) {
-			$first = false;
-		} else {
-			$record .= ",";
-		}
-		$record .= '"' . $field->name . '" : "' . $_POST [$field->name] . '"';
+		$record .= ', "' . $field->name . '" : "' . $_POST [$field->name] . '"';
 	}
 	$record .= "}";
 	

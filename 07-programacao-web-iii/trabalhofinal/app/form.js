@@ -13,14 +13,23 @@ function getURLParameter(name) {
 
 function buildForm() {
 	$.get("controllers/models.php", {
-		model : getURLParameter("model")
+		model : getURLParameter("model"),
+		id : getURLParameter("id")
 	}, function(data) {
-		var fields = JSON.parse(data);
+		var result = JSON.parse(data);
+
+		var fields = result.fields;
+		var record = result.record;
 
 		for (var i = 0; i < fields.length; i++) {
 			var field = "<div class=field>";
 			field += "<span>" + fields[i].label + ": </span>";
-			field += "<input type='text' name=" + fields[i].name + ">";
+			field += "<input type='text'";
+			field += " name=" + fields[i].name;
+			if (record) {
+				field += " value=" + record[fields[i].name];
+			}
+			field += ">";
 			field += "</div>";
 
 			$("#form").append(field);

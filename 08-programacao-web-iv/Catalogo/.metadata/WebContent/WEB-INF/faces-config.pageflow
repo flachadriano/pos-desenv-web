@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14360186155730" configfile="/Catalogo/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="WEB-INF/categoria.xhtml" x="288" y="120" id="pf14360187147621" path="/WEB-INF/categoria.xhtml"/>
+</pageflow:Pageflow>

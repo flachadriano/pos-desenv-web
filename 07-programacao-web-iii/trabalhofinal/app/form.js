@@ -40,7 +40,8 @@ function buildForm() {
 function save() {
 	$.ajax({
 		type : "POST",
-		url : "controllers/create.php?model=" + getURLParameter("model"),
+		url : "controllers/create.php?model=" + getURLParameter("model")
+				+ "&id=" + getURLParameter("id"),
 		dataType : "json",
 		data : $("#form").serialize(),
 		success : function(errors, status, xhr) {

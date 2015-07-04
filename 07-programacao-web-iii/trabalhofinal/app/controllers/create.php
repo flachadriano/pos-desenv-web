@@ -27,15 +27,31 @@ foreach ( $model as $field ) {
 echo "]";
 
 if (! $error) {
-	if (! $_SESSION [$_GET ["model"]]) {
+	if (! isset ( $_SESSION [$_GET ["model"]] )) {
 		$_SESSION [$_GET ["model"]] = [ ];
 	}
 	
-	$record = '{"id": ' . '"' . ($_SESSION [$_GET ["model"]] . length + 1) . '"';
+	$new_record = '{"id": ' . '"' . (count ( $_SESSION [$_GET ["model"]] ) + 1) . '"';
 	foreach ( $model as $field ) {
-		$record .= ', "' . $field->name . '" : "' . $_POST [$field->name] . '"';
+		$new_record .= ', "' . $field->name . '" : "' . $_POST [$field->name] . '"';
 	}
-	$record .= "}";
+	$new_record .= "}";
 	
-	array_push ( $_SESSION [$_GET ["model"]], $record );
+	if (isset ( $_GET ["id"] ) && $_GET ["id"] != "null") {
+		$records = [ ];
+		
+		foreach ( $_SESSION [$_GET ["model"]] as $record ) {
+			$recordJson = json_decode ( $record );
+			
+			if ($recordJson->id == $_GET ["id"]) {
+				array_push ( $records, $new_record );
+			} else {
+				array_push ( $records, $record );
+			}
+		}
+		
+		$_SESSION [$_GET ["model"]] = $records;
+	} else {
+		array_push ( $_SESSION [$_GET ["model"]], $new_record );
+	}
 }

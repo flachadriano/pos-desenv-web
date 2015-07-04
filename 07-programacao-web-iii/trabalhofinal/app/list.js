@@ -10,6 +10,16 @@ function getURLParameter(name) {
 }
 
 function buildList() {
+	if (getURLParameter("id")) {
+		$.get("controllers/delete.php", {
+			model : getURLParameter("model"),
+			id : getURLParameter("id")
+		}, function(data) {
+			window.location.href = "list.html?model="
+					+ getURLParameter("model");
+		});
+	}
+
 	$.get("controllers/actions.php", {
 		model : getURLParameter("model")
 	}, function(data) {

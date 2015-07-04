@@ -20,7 +20,7 @@ public class ContatoDAO {
 	public void alterar(Contato contato) {
 		for (int i = 0; i < registros.size(); i++) {
 			if (contato.getNome().equals(registros.get(i).getNome())) {
-				registros.add(i, contato);
+				registros.set(i, contato);
 				return;
 			}
 		}

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="template.xhtml">
+        <ui:define name="head">
+            <h:link outcome="contato-list"
+                    value="Voltar"/>
+        </ui:define>
+        <ui:define name="body">
+            <h:form>
+                <h:inputHidden value="#{contatoBean.update}" />
+                
+                <h:panelGrid columns="3">
+                    
+                    <h:outputLabel for="codigo" value="Código:" />
+                    <h:inputText id="codigo" required="true"
+                                 value="#{contatoBean.contatoItem.codigo}"/>
+                    <h:message for="codigo" />
+                    
+                    <h:outputLabel for="nome" value="Nome:" />
+                    <h:inputText id="nome" required="true"
+                                 value="#{contatoBean.contatoItem.nome}"/>
+                    <h:message for="nome" />
+                    
+                    <h:outputLabel for="categoria" value="Categoria:" />
+                    <h:selectOneMenu value="#{contatoBean.contatoItem.categoria}"
+                                     converter="#{categoriaConverter}">
+                        <f:selectItem itemLabel="--Selecione--" 
+                                      noSelectionOption="true"/>
+                        <f:selectItems var="item" value="#{categoriaBean.categorias}"
+                                       itemLabel="#{item.nome}"
+                                       itemValue="#{item}" />
+                    </h:selectOneMenu>
+                    <h:message for="categoria" />
+                    
+                    <h:outputLabel for="telefone" value="Telefone:" />
+                    <h:inputText id="telefone"
+                                 value="#{contatoBean.contatoItem.telefone}"/>
+                    <h:message for="telefone" />
+                    
+                    <h:outputLabel for="email" value="Email:" />
+                    <h:inputText id="email" required="true"
+                                 value="#{contatoBean.contatoItem.email}"/>
+                    <h:message for="email" />
+                    
+                </h:panelGrid>
+                
+                <h:commandButton value="Salvar"
+                                 action="#{contatoBean.salvar}"/> | 
+                <h:commandButton value="Cancelar" immediate="true"
+                                 action="#{contatoBean.limpar}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

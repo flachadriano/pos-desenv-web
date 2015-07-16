@@ -27,5 +27,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY/SQLite JDBC Driver"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/lombok.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

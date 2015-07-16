@@ -6,9 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "categorias")
-public class CategoriaProduto {
+public @Data class CategoriaProduto {
 
 	@Id
 	@GeneratedValue

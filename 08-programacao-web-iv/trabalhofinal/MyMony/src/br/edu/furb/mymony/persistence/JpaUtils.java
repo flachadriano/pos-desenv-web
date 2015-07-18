@@ -13,7 +13,7 @@ public class JpaUtils {
 	@Produces
 	@ApplicationScoped
 	public EntityManagerFactory createFactory() {
-		return Persistence.createEntityManagerFactory("estoque");
+		return Persistence.createEntityManagerFactory("mymony");
 	}
 
 	@Produces

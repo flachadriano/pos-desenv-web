@@ -10,7 +10,7 @@ import lombok.Data;
 
 @Entity
 @Table(name = "categorias_produtos")
-public @Data class CategoriaProduto {
+public @Data class Category {
 
 	@Id
 	@GeneratedValue

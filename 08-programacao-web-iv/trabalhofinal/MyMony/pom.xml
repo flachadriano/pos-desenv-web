@@ -59,6 +59,12 @@
 			<artifactId>weld-servlet</artifactId>
 			<version>2.2.14.Final</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.8.10.1</version>
+		</dependency>
 	</dependencies>
 
 </project>

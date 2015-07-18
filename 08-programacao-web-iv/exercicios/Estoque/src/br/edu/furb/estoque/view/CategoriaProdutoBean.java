@@ -7,7 +7,7 @@ import javax.faces.component.UIData;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.furb.estoque.model.CategoriaProduto;
+import br.edu.furb.estoque.model.Category;
 import br.edu.furb.estoque.persistence.CategoriaProdutoDAO;
 import br.edu.furb.estoque.persistence.Transaction;
 
@@ -16,7 +16,7 @@ import br.edu.furb.estoque.persistence.Transaction;
 public class CategoriaProdutoBean {
 
 	@Inject
-	private CategoriaProduto categoriaItem;
+	private Category categoriaItem;
 	@Inject
 	private CategoriaProdutoDAO dao;
 
@@ -40,14 +40,14 @@ public class CategoriaProdutoBean {
 	}
 
 	public String editar() {
-		this.categoriaItem = (CategoriaProduto) selection.getRowData();
+		this.categoriaItem = (Category) selection.getRowData();
 		update = true;
 		return "categoria";
 	}
 
 	@Transaction
 	public String excluir() {
-		this.categoriaItem = (CategoriaProduto) selection.getRowData();
+		this.categoriaItem = (Category) selection.getRowData();
 		dao.excluir(categoriaItem);
 		return "categorias?faces-redirect=true";
 	}
@@ -56,7 +56,7 @@ public class CategoriaProdutoBean {
 		return "categorias?faces-redirect=true";
 	}
 
-	public List<CategoriaProduto> getCategorias() {
+	public List<Category> getCategorias() {
 		return dao.listarTodos();
 	}
 
@@ -70,11 +70,11 @@ public class CategoriaProdutoBean {
 		return "categorias?faces-redirect=true";
 	}
 
-	public CategoriaProduto getCategoriaItem() {
+	public Category getCategoriaItem() {
 		return categoriaItem;
 	}
 
-	public void setCategoriaItem(CategoriaProduto categoriaItem) {
+	public void setCategoriaItem(Category categoriaItem) {
 		this.categoriaItem = categoriaItem;
 	}
 

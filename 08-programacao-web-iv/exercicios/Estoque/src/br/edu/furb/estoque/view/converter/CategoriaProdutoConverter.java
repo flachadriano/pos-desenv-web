@@ -6,7 +6,7 @@ import javax.faces.convert.Converter;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.furb.estoque.model.CategoriaProduto;
+import br.edu.furb.estoque.model.Category;
 import br.edu.furb.estoque.persistence.CategoriaProdutoDAO;
 
 @Named
@@ -22,7 +22,7 @@ public class CategoriaProdutoConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		CategoriaProduto cat = (CategoriaProduto) value;
+		Category cat = (Category) value;
 		if (cat == null) {
 			return "";
 		}

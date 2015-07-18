@@ -27,7 +27,7 @@ public @Data class Produto {
 
 	@ManyToOne
 	@JoinColumn(name = "idcategoria", nullable = false)
-	private CategoriaProduto categoriaProduto;
+	private Category categoriaProduto;
 
 	@Column(name = "preco", nullable = false)
 	private Double preco;

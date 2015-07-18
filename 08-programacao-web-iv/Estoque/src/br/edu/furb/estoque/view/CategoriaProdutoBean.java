@@ -49,11 +49,11 @@ public class CategoriaProdutoBean {
 	public String excluir() {
 		this.categoriaItem = (CategoriaProduto) selection.getRowData();
 		dao.excluir(categoriaItem);
-		return "categoria?faces-redirect=true";
+		return "categorias?faces-redirect=true";
 	}
 
 	public String limpar() {
-		return "categoria?faces-redirect=true";
+		return "categorias?faces-redirect=true";
 	}
 
 	public List<CategoriaProduto> getCategorias() {
@@ -67,7 +67,7 @@ public class CategoriaProdutoBean {
 		} else {
 			dao.inserir(categoriaItem);
 		}
-		return "categoria?faces-redirect=true";
+		return "categorias?faces-redirect=true";
 	}
 
 	public CategoriaProduto getCategoriaItem() {

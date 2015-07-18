@@ -42,7 +42,7 @@ public class ProdutoBean {
 	public String editar() {
 		produtoItem = (Produto) selecionado.getRowData();
 		update = true;
-		return "produto-form";
+		return "produto";
 	}
 
 	@Transaction
@@ -52,18 +52,18 @@ public class ProdutoBean {
 		} else {
 			dao.inserir(produtoItem);
 		}
-		return "produto-list?faces-redirect=true";
+		return "produtos?faces-redirect=true";
 	}
 
 	@Transaction
 	public String excluir() {
 		produtoItem = (Produto) selecionado.getRowData();
 		dao.excluir(produtoItem);
-		return "produto-list?faces-redirect=true";
+		return "produtos?faces-redirect=true";
 	}
 
 	public String limpar() {
-		return "produto-list?faces-redirect=true";
+		return "produtos?faces-redirect=true";
 	}
 
 	public List<Produto> getProdutos() {

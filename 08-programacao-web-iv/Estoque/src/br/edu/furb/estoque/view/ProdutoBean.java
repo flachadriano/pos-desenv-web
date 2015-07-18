@@ -13,7 +13,7 @@ import br.edu.furb.estoque.persistence.Transaction;
 
 @Named
 @RequestScoped
-public class ContatoBean {
+public class ProdutoBean {
 
 	@Inject
 	private Produto produtoItem;

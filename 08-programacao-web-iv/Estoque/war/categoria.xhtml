@@ -8,34 +8,34 @@
         <ui:define name="body">
             <h:form>
                 
-                <h:inputHidden value="#{categoriaBean.update}" />
+                <h:inputHidden value="#{categoriaProdutoBean.update}" />
                 
                 <h:panelGrid columns="3">
                     
-                    <h:outputLabel for="codigo" value="Código:"/>
-                    <h:inputText id="codigo" required="true"
-                        value="#{categoriaBean.categoriaItem.codigo}"/>
-                    <h:message for="codigo"/>
+                    <h:outputLabel for="id" value="ID:"/>
+                    <h:inputText id="id" required="true"
+                        value="#{categoriaProdutoBean.categoriaItem.id}"/>
+                    <h:message for="id"/>
                     
                     <h:outputLabel for="nome" value="Nome:"/>
                     <h:inputText id="nome" required="true"
-                        value="#{categoriaBean.categoriaItem.nome}"/>
+                        value="#{categoriaProdutoBean.categoriaItem.nome}"/>
                     <h:message for="nome" />
                     
                 </h:panelGrid>
                 <h:commandButton value="Salvar"
-                    action="#{categoriaBean.salvar()}"/> | 
+                    action="#{categoriaProdutoBean.salvar()}"/> | 
                 <h:commandButton value="Cancelar" immediate="true"
-                    action="#{categoriaBean.limpar()}"/>
+                    action="#{categoriaProdutoBean.limpar()}"/>
             </h:form>
             <br />
             <h:form>
-                <h:dataTable var="item" value="#{categoriaBean.categorias}"
-                             binding="#{categoriaBean.selection}"
+                <h:dataTable var="item" value="#{categoriaProdutoBean.categorias}"
+                             binding="#{categoriaProdutoBean.selection}"
                              rowClasses="row-impar,row-par">
                     <h:column>
                         <f:facet name="header">Código</f:facet>
-                        <h:outputText value="#{item.codigo}"/>
+                        <h:outputText value="#{item.id}"/>
                     </h:column>
                     
                     <h:column>
@@ -44,10 +44,10 @@
                     </h:column>
                     
                     <h:column>
-                        <h:commandLink action="#{categoriaBean.editar}">
+                        <h:commandLink action="#{categoriaProdutoBean.editar}">
                             <h:graphicImage library="img" name="edit.png"/> 
                         </h:commandLink>
-                        <h:commandLink action="#{categoriaBean.excluir}">
+                        <h:commandLink action="#{categoriaProdutoBean.excluir}">
                             <h:graphicImage library="img" name="delete.png"/> 
                         </h:commandLink>
                     </h:column>

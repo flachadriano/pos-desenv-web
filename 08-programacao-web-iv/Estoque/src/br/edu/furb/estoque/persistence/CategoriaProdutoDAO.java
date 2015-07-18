@@ -27,7 +27,7 @@ public class CategoriaProdutoDAO {
 	}
 
 	public List<CategoriaProduto> listarTodos() {
-		Query q = em.createQuery("select o from Categoria as o", CategoriaProduto.class);
+		Query q = em.createQuery("select o from CategoriaProduto as o", CategoriaProduto.class);
 		return q.getResultList();
 	}
 

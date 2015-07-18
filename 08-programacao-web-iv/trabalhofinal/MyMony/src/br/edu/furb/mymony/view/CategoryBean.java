@@ -42,18 +42,18 @@ public class CategoryBean {
 	public String update() {
 		this.category = (Category) selected.getRowData();
 		update = true;
-		return "categoria";
+		return "category";
 	}
 
 	@Transaction
 	public String delete() {
 		this.category = (Category) selected.getRowData();
 		dao.delete(category);
-		return "categorias?faces-redirect=true";
+		return "categories?faces-redirect=true";
 	}
 
 	public String clean() {
-		return "categorias?faces-redirect=true";
+		return "categories?faces-redirect=true";
 	}
 
 	public List<Category> getCategories() {
@@ -67,7 +67,7 @@ public class CategoryBean {
 		} else {
 			dao.add(category);
 		}
-		return "categorias?faces-redirect=true";
+		return "categories?faces-redirect=true";
 	}
 
 	public Category getCategory() {

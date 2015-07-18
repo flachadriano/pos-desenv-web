@@ -31,4 +31,5 @@ public class ProdutoDAO {
 		Query q = em.createQuery("select o from Produto as o", Produto.class);
 		return q.getResultList();
 	}
+
 }

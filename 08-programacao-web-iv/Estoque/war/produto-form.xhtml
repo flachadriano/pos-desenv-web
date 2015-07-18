@@ -1,53 +1,57 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="template.xhtml">
-        <ui:define name="head">
-            <h:link outcome="contato-list"
-                    value="Voltar"/>
-        </ui:define>
-        <ui:define name="body">
-            <h:form>
-                <h:inputHidden value="#{produtoBean.update}" />
-                
-                <h:panelGrid columns="3">
-                    
-                    <h:outputLabel for="id" value="ID:" />
-                    <h:inputText id="id" required="true"
-                                 value="#{produtoBean.produtoItem.id}"/>
-                    <h:message for="id" />
-                    
-                    <h:outputLabel for="codigo" value="Código:" />
-                    <h:inputText id="codigo" required="true"
-                                 value="#{produtoBean.produtoItem.codigo}"/>
-                    <h:message for="codigo" />
-                    
-                    <h:outputLabel for="nome" value="Nome:" />
-                    <h:inputText id="nome" required="true"
-                                 value="#{produtoBean.produtoItem.nome}"/>
-                    <h:message for="nome" />
-                    
-                    <h:outputLabel for="preco" value="Preco:" />
-                    <h:inputText id="preco"
-                                 value="#{produtoBean.produtoItem.preco}"/>
-                    <h:message for="preco" />
-                    
-                    <h:outputLabel for="estoque" value="Estoque:" />
-                    <h:inputText id="estoque" required="true"
-                                 value="#{produtoBean.produtoItem.estoque}"/>
-                    <h:message for="estoque" />
-                    
-                </h:panelGrid>
-                
-                <h:commandButton value="Salvar"
-                                 action="#{produtoBean.salvar}"/> | 
-                <h:commandButton value="Cancelar" immediate="true"
-                                 action="#{produtoBean.limpar}"/>
-            </h:form>
-        </ui:define>
-    </ui:composition>
-</html>
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+<ui:composition template="template.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<h:inputHidden value="#{produtoBean.update}" />
+
+			<h:panelGrid columns="3">
+
+				<h:outputLabel for="id" value="ID:" />
+				<h:inputText id="id" required="true"
+					value="#{produtoBean.produtoItem.id}" />
+				<h:message for="id" />
+
+				<h:outputLabel for="codigo" value="Código:" />
+				<h:inputText id="codigo" required="true"
+					value="#{produtoBean.produtoItem.codigo}" />
+				<h:message for="codigo" />
+
+				<h:outputLabel for="nome" value="Nome:" />
+				<h:inputText id="nome" required="true"
+					value="#{produtoBean.produtoItem.nome}" />
+				<h:message for="nome" />
+
+				<h:outputLabel for="categoriaProduto" value="Categoria:" />
+				<h:selectOneMenu value="#{produtoBean.produtoItem.categoriaProduto}"
+					converter="#{categoriaProdutoConverter}">
+					<f:selectItem itemLabel="--Selecione--" noSelectionOption="true" />
+					<f:selectItems var="item"
+						value="#{categoriaProdutoBean.categorias}"
+						itemLabel="#{item.nome}" itemValue="#{item}" />
+				</h:selectOneMenu>
+				<h:message for="categoriaProduto" />
+
+				<h:outputLabel for="preco" value="Preco:" />
+				<h:inputText id="preco" value="#{produtoBean.produtoItem.preco}" />
+				<h:message for="preco" />
+
+				<h:outputLabel for="estoque" value="Estoque:" />
+				<h:inputText id="estoque" required="true"
+					value="#{produtoBean.produtoItem.estoque}" />
+				<h:message for="estoque" />
+
+			</h:panelGrid>
+
+			<h:commandButton value="Salvar" action="#{produtoBean.salvar}" /> | 
+                <h:commandButton value="Cancelar" immediate="true"
+				action="#{produtoBean.limpar}" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

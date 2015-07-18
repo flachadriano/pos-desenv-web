@@ -66,15 +66,15 @@ public class ProdutoBean {
 		return "produto-list?faces-redirect=true";
 	}
 
-	public List<Produto> getContatos() {
+	public List<Produto> getProdutos() {
 		return dao.listarTodos();
 	}
 
-	public Produto getContatoItem() {
+	public Produto getProdutoItem() {
 		return produtoItem;
 	}
 
-	public void setContatoItem(Produto contatoItem) {
+	public void setProdutoItem(Produto contatoItem) {
 		this.produtoItem = contatoItem;
 	}
 

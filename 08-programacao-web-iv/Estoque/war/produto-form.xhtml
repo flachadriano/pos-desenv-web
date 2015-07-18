@@ -11,47 +11,41 @@
         </ui:define>
         <ui:define name="body">
             <h:form>
-                <h:inputHidden value="#{contatoBean.update}" />
+                <h:inputHidden value="#{produtoBean.update}" />
                 
                 <h:panelGrid columns="3">
                     
+                    <h:outputLabel for="id" value="ID:" />
+                    <h:inputText id="id" required="true"
+                                 value="#{produtoBean.produtoItem.id}"/>
+                    <h:message for="id" />
+                    
                     <h:outputLabel for="codigo" value="Código:" />
                     <h:inputText id="codigo" required="true"
-                                 value="#{contatoBean.contatoItem.codigo}"/>
+                                 value="#{produtoBean.produtoItem.codigo}"/>
                     <h:message for="codigo" />
                     
                     <h:outputLabel for="nome" value="Nome:" />
                     <h:inputText id="nome" required="true"
-                                 value="#{contatoBean.contatoItem.nome}"/>
+                                 value="#{produtoBean.produtoItem.nome}"/>
                     <h:message for="nome" />
                     
-                    <h:outputLabel for="categoria" value="Categoria:" />
-                    <h:selectOneMenu value="#{contatoBean.contatoItem.categoria}"
-                                     converter="#{categoriaConverter}">
-                        <f:selectItem itemLabel="--Selecione--" 
-                                      noSelectionOption="true"/>
-                        <f:selectItems var="item" value="#{categoriaBean.categorias}"
-                                       itemLabel="#{item.nome}"
-                                       itemValue="#{item}" />
-                    </h:selectOneMenu>
-                    <h:message for="categoria" />
+                    <h:outputLabel for="preco" value="Preco:" />
+                    <h:inputText id="preco"
+                                 value="#{produtoBean.produtoItem.preco}"/>
+                    <h:message for="preco" />
                     
-                    <h:outputLabel for="telefone" value="Telefone:" />
-                    <h:inputText id="telefone"
-                                 value="#{contatoBean.contatoItem.telefone}"/>
-                    <h:message for="telefone" />
-                    
-                    <h:outputLabel for="email" value="Email:" />
-                    <h:inputText id="email" required="true"
-                                 value="#{contatoBean.contatoItem.email}"/>
-                    <h:message for="email" />
+                    <h:outputLabel for="estoque" value="Estoque:" />
+                    <h:inputText id="estoque" required="true"
+                                 value="#{produtoBean.produtoItem.estoque}"/>
+                    <h:message for="estoque" />
                     
                 </h:panelGrid>
                 
                 <h:commandButton value="Salvar"
-                                 action="#{contatoBean.salvar}"/> | 
+                                 action="#{produtoBean.salvar}"/> | 
                 <h:commandButton value="Cancelar" immediate="true"
-                                 action="#{contatoBean.limpar}"/>
+                                 action="#{produtoBean.limpar}"/>
             </h:form>
         </ui:define>
     </ui:composition>

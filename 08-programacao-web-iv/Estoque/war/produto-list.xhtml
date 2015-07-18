@@ -7,9 +7,14 @@
     <ui:composition template="template.xhtml">
         <ui:define name="body">
             <h:form>
-                <h:dataTable var="item" value="#{contatoBean.contatos}"
-                             binding="#{contatoBean.selecionado}"
+                <h:dataTable var="item" value="#{produtoBean.produtos}"
+                             binding="#{produtoBean.selecionado}"
                              rowClasses="row-impar,row-par">
+
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:outputText value="#{item.id}" />
+                    </h:column>
 
                     <h:column>
                         <f:facet name="header">Código</f:facet>
@@ -22,26 +27,21 @@
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Categoria</f:facet>
-                        <h:outputText value="#{item.categoria.nome}" />
+                        <f:facet name="header">Preço</f:facet>
+                        <h:outputText value="#{item.preco}" />
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Telefone</f:facet>
-                        <h:outputText value="#{item.telefone}" />
+                        <f:facet name="header">Estoque</f:facet>
+                        <h:outputText value="#{item.estoque}" />
                     </h:column>
 
                     <h:column>
-                        <f:facet name="header">Email</f:facet>
-                        <h:outputText value="#{item.email}" />
-                    </h:column>
-
-                    <h:column>
-                        <h:commandLink action="#{contatoBean.editar()}">
+                        <h:commandLink action="#{produtoBean.editar()}">
                             <h:graphicImage library="img" name="edit.png" />
                         </h:commandLink>
 
-                        <h:commandLink action="#{contatoBean.excluir()}">
+                        <h:commandLink action="#{produtoBean.excluir()}">
                             <h:graphicImage library="img" name="delete.png" />
                         </h:commandLink>
                     </h:column>

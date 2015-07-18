@@ -26,6 +26,7 @@ public class CategoriaProdutoDAO {
 		em.remove(c);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<CategoriaProduto> listarTodos() {
 		Query q = em.createQuery("select o from CategoriaProduto as o", CategoriaProduto.class);
 		return q.getResultList();

@@ -22,12 +22,13 @@ public class ProdutoDAO {
 	}
 
 	public void excluir(Produto produto) {
-		Produto prod = em.find(Produto.class, produto.getCodigo());
+		Produto prod = em.find(Produto.class, produto.getId());
 		em.remove(prod);
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Produto> listarTodos() {
-		Query q = em.createQuery("select o from Contato as o", Produto.class);
+		Query q = em.createQuery("select o from Produto as o", Produto.class);
 		return q.getResultList();
 	}
 }

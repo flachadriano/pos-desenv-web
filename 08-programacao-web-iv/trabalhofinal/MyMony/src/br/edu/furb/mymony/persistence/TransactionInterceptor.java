@@ -7,7 +7,7 @@ import javax.interceptor.InvocationContext;
 import javax.persistence.EntityManager;
 
 @Interceptor
-@Transaction
+@ITransaction
 public class TransactionInterceptor {
 
 	@Inject

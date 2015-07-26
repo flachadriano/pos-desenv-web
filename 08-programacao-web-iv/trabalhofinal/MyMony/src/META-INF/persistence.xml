@@ -6,6 +6,7 @@
 	<persistence-unit name="mymony">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>br.edu.furb.mymony.model.Category</class>
+		<class>br.edu.furb.mymony.model.Transaction</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
 			<property name="javax.persistence.jdbc.url"

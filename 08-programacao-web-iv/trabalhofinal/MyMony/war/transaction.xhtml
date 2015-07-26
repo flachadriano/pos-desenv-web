@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="template.xhtml">
+	<ui:define name="body">
+		<h:form>
+			<h:inputHidden value="#{transactionBean.updating}" />
+
+			<h:panelGrid columns="3">
+
+				<h:outputLabel for="id" value="ID:" />
+				<h:inputText id="id" required="true"
+					value="#{transactionBean.transaction.id}" />
+				<h:message for="id" />
+
+				<h:outputLabel for="description" value="Descrição:" />
+				<h:inputText id="description" required="true"
+					value="#{transactionBean.transaction.description}" />
+				<h:message for="description" />
+
+				<h:outputLabel for="amount" value="Valor:" />
+				<h:inputText id="amount" value="#{transactionBean.transaction.amount}" />
+				<h:message for="amount" />
+
+			</h:panelGrid>
+			<h:commandButton value="Salvar" action="#{transactionBean.save}" /> | 
+                <h:commandButton value="Cancelar" immediate="true"
+				action="#{transactionBean.clean}" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+

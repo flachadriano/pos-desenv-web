@@ -8,11 +8,12 @@
 
 <ui:composition template="template.xhtml">
 	<ui:define name="body">
-		<h:link outcome="category" value="Nova Categoria" />
+		<h:link outcome="transaction" value="Nova Transação" />
 
 		<h:form>
-			<h:dataTable var="item" value="#{categoryBean.categories}"
-				binding="#{categoryBean.selectedItem}" rowClasses="row-impar,row-par">
+			<h:dataTable var="item" value="#{transactionBean.transactions}"
+				binding="#{transactionBean.selectedItem}"
+				rowClasses="row-impar,row-par">
 
 				<h:column>
 					<f:facet name="header">Código</f:facet>
@@ -20,15 +21,15 @@
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Nome</f:facet>
-					<h:outputText value="#{item.name}" />
+					<f:facet name="header">Description</f:facet>
+					<h:outputText value="#{item.description}" />
 				</h:column>
 
 				<h:column>
-					<h:commandLink action="#{categoryBean.update}">
+					<h:commandLink action="#{transactionBean.update}">
 						<h:graphicImage library="img" name="edit.png" />
 					</h:commandLink>
-					<h:commandLink action="#{categoryBean.delete}">
+					<h:commandLink action="#{transactionBean.delete}">
 						<h:graphicImage library="img" name="delete.png" />
 					</h:commandLink>
 				</h:column>

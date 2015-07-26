@@ -7,18 +7,18 @@ import javax.faces.component.UIData;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.edu.furb.mymony.model.Category;
-import br.edu.furb.mymony.persistence.CategoryDAO;
+import br.edu.furb.mymony.model.Transaction;
 import br.edu.furb.mymony.persistence.ITransaction;
+import br.edu.furb.mymony.persistence.TransactionDAO;
 
 @Named
 @RequestScoped
-public class CategoryBean {
+public class TransactionBean {
 
 	@Inject
-	private Category category;
+	private Transaction transaction;
 	@Inject
-	private CategoryDAO dao;
+	private TransactionDAO dao;
 
 	private UIData selected = null;
 	private boolean update = false;
@@ -40,42 +40,42 @@ public class CategoryBean {
 	}
 
 	public String update() {
-		this.category = (Category) selected.getRowData();
+		transaction = (Transaction) selected.getRowData();
 		update = true;
-		return "category";
+		return "transaction";
 	}
 
 	@ITransaction
 	public String delete() {
-		this.category = (Category) selected.getRowData();
-		dao.delete(category);
-		return "categories?faces-redirect=true";
+		transaction = (Transaction) selected.getRowData();
+		dao.delete(transaction);
+		return "transactions?faces-redirect=true";
 	}
 
 	public String clean() {
-		return "categories?faces-redirect=true";
+		return "transactions?faces-redirect=true";
 	}
 
-	public List<Category> getCategories() {
+	public List<Transaction> getTransactions() {
 		return dao.all();
 	}
 
 	@ITransaction
 	public String save() {
 		if (update) {
-			dao.update(category);
+			dao.update(transaction);
 		} else {
-			dao.add(category);
+			dao.add(transaction);
 		}
-		return "categories?faces-redirect=true";
+		return "transactions?faces-redirect=true";
 	}
 
-	public Category getCategory() {
-		return category;
+	public Transaction getTransaction() {
+		return transaction;
 	}
 
-	public void setCategory(Category categoriaItem) {
-		this.category = categoriaItem;
+	public void setCategory(Transaction transactionItem) {
+		this.transaction = transactionItem;
 	}
 
 }

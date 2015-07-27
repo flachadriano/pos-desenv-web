@@ -22,16 +22,19 @@ public @Data class Transaction {
 	@Column(name = "id")
 	private int id;
 
-	@ManyToMany
-	@JoinTable(name = "categories_transactions", 
-				joinColumns = @JoinColumn(name="category_id"),
-				inverseJoinColumns = @JoinColumn(name="transaction_id"))
-	private List<Category> categories;
+	@Column(name = "date")
+	private String date;
 
 	@Column(name = "description")
 	private String description;
 
 	@Column(name = "amount", nullable = false)
 	private Double amount;
+
+	@ManyToMany
+	@JoinTable(name = "categories_transactions", 
+				joinColumns = @JoinColumn(name="category_id"),
+				inverseJoinColumns = @JoinColumn(name="transaction_id"))
+	private List<Category> categories;
 
 }

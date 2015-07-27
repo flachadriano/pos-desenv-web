@@ -8,7 +8,7 @@
 <h:head>
 	<title>MyMony</title>
 	<link href="inputosaurus.css" rel="stylesheet"></link>
-	<link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-responsive.no-icons.min.css" rel="stylesheet"></link>
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/dc/1.7.0/dc.css" rel="stylesheet"></link>
 </h:head>
 
 <h:body>
@@ -16,13 +16,14 @@
 		<b:navbarLinks>
 			<b:navLink value="Categorias" href="categories.jsf" />
 			<b:navLink value="Transações" href="transactions.jsf" />
+			<b:navLink value="Relatórios" href="reports.jsf" />
 		</b:navbarLinks>
 	</b:navBar>
 
 	<b:panel>
 		<ui:insert name="body" />
 	</b:panel>
-	
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 	<script src="inputosaurus.js"></script>

@@ -36,6 +36,10 @@ public class CategoryDAO {
 	}
 
 	public Category getOrCreateByName(String name) {
+		if (name.equals("")) {
+			return null;
+		}
+
 		List<Category> records = em.createQuery("select c from Category as c where c.name = :nome", Category.class).setParameter("nome", name).getResultList();
 
 		if (records != null) {

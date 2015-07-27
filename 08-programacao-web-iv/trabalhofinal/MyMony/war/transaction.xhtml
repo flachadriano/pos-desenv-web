@@ -7,6 +7,7 @@
 
 <ui:composition template="template.xhtml">
 	<ui:define name="body">
+
 		<h:form>
 			<h:inputHidden value="#{transactionBean.updating}" />
 
@@ -17,13 +18,20 @@
 					value="#{transactionBean.transaction.id}" />
 				<h:message for="id" />
 
+				<h:outputLabel for="categories" value="Categorias:" />
+				<h:inputText id="categories"
+					value="#{transactionBean.transaction.categories}"
+					converter="#{categoryConverter}" />
+				<h:message for="categories" />
+
 				<h:outputLabel for="description" value="Descrição:" />
-				<h:inputText id="description" required="true"
+				<h:inputText id="description"
 					value="#{transactionBean.transaction.description}" />
 				<h:message for="description" />
 
 				<h:outputLabel for="amount" value="Valor:" />
-				<h:inputText id="amount" value="#{transactionBean.transaction.amount}" />
+				<h:inputText id="amount" required="true"
+					value="#{transactionBean.transaction.amount}" />
 				<h:message for="amount" />
 
 			</h:panelGrid>
@@ -31,6 +39,8 @@
                 <h:commandButton value="Cancelar" immediate="true"
 				action="#{transactionBean.clean}" />
 		</h:form>
+
+		<script src="transaction.js"></script>
 	</ui:define>
 </ui:composition>
 </html>

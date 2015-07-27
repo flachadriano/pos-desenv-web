@@ -1,9 +1,13 @@
 package br.edu.furb.mymony.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -17,8 +21,9 @@ public @Data class Transaction {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "categories")
-	private String categories;
+	@OneToMany
+	@JoinColumn(name = "categories")
+	private List<Category> categories;
 
 	@Column(name = "description")
 	private String description;

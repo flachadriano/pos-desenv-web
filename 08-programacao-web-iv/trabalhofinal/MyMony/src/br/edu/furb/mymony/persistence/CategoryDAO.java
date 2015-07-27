@@ -35,4 +35,17 @@ public class CategoryDAO {
 		em.remove(em.find(Category.class, category.getId()));
 	}
 
+	public Category getOrCreateByName(String name) {
+		List<Category> records = em.createQuery("select c from Category as c where c.name = :nome", Category.class).setParameter("nome", name).getResultList();
+
+		if (records != null) {
+			return records.get(0);
+		} else {
+			Category category = new Category();
+			category.setName(name);
+			em.persist(category);
+			return category;
+		}
+	}
+
 }

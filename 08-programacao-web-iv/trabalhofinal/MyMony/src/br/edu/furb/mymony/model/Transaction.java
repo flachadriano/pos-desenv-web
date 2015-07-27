@@ -7,7 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -21,8 +22,10 @@ public @Data class Transaction {
 	@Column(name = "id")
 	private int id;
 
-	@OneToMany
-	@JoinColumn(name = "categories")
+	@ManyToMany
+	@JoinTable(name = "categories_transactions", 
+				joinColumns = @JoinColumn(name="category_id"),
+				inverseJoinColumns = @JoinColumn(name="transaction_id"))
 	private List<Category> categories;
 
 	@Column(name = "description")

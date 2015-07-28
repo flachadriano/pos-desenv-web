@@ -2,6 +2,7 @@ google.load("visualization", "1", {
 	packages : [ "corechart" ]
 });
 google.setOnLoadCallback(drawChart);
+google.setOnLoadCallback(drawPieChart);
 
 function drawChart() {
 	var data = google.visualization.arrayToDataTable(JSON.parse(document
@@ -10,7 +11,7 @@ function drawChart() {
 	var options = {
 		title : 'Transações',
 		hAxis : {
-			title : 'Year',
+			title : 'Data',
 			titleTextStyle : {
 				color : '#333'
 			}
@@ -22,5 +23,20 @@ function drawChart() {
 
 	var chart = new google.visualization.AreaChart(document
 			.getElementById('chartdiv'));
+	chart.draw(data, options);
+}
+
+function drawPieChart() {
+
+	var data = google.visualization.arrayToDataTable(JSON.parse(document
+			.getElementById('dataByCategory').value));
+
+	var options = {
+		title : 'Totais por categoria'
+	};
+
+	var chart = new google.visualization.PieChart(document
+			.getElementById('piechartdiv'));
+
 	chart.draw(data, options);
 }

@@ -8,8 +8,10 @@
 <ui:composition template="template.xhtml">
 	<ui:define name="body">
 		<div id="chartdiv"></div>
+		<div id="piechartdiv"></div>
 
 		<h:inputHidden id="data" value="#{reportBean.data}" />
+		<h:inputHidden id="dataByCategory" value="#{reportBean.amountByCategory}" />
 
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 		<script type="text/javascript" language="javascript" src="reports.js"></script>

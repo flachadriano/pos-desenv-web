@@ -35,4 +35,8 @@ public class TransactionDAO {
 		em.remove(em.find(Transaction.class, transaction.getId()));
 	}
 
+	public List getAllGroupedByDate() {
+		return em.createQuery("select t.date, sum(t.amount) from Transaction as t group by t.date").getResultList();
+	}
+	
 }

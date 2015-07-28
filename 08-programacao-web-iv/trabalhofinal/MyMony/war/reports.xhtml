@@ -9,15 +9,11 @@
 	<ui:define name="body">
 		<div id="chartdiv"></div>
 
-		<!-- 		<script src="d3.js" charset="utf-8"></script> -->
-		<!-- 		<script src="crossfilter.js"></script> -->
-		<!-- 		<script src="dc.js"></script> -->
-		<!-- 		<script src="colorbrewer.js"></script> -->
-		<!-- 		<script src="report-data.js"></script> -->
-		<!-- 		<script src="transaction.js"></script> -->
+		<h:inputHidden id="data" value="#{reportBean.data}" />
 
 		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-		<script type="text/javascript" src="reports.js"></script>
+		<script type="text/javascript" language="javascript" src="reports.js"></script>
+
 	</ui:define>
 </ui:composition>
 </html>

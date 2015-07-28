@@ -4,7 +4,7 @@ google.load("visualization", "1", {
 google.setOnLoadCallback(drawChart);
 
 function drawChart() {
-	var data = google.visualization.arrayToDataTable(teste);
+	var data = google.visualization.arrayToDataTable([]);
 
 	var options = {
 		title : 'Transações',

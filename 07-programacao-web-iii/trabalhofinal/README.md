@@ -1,30 +1,8 @@
 You can run this project like an usual project, but it can run into a Docker.
 
+To install Docker, you can follow the root README of this repository.
+
 To run using Docker, just follow theses steps:
-
-# HOW TO INSTALL DOCKER
-
-In my case, I am using Mac, so these steps to install Docker will only work into Mac OS:
-
-brew update
-
-brew install docker
-
-brew install boot2docker
-
-boot2docker init
-
-boot2docker start
-
-docker run hello-world
-
-# ON RESTART COMPUTER
-
-Start Docker
-$ boot2docker up
-
-Start the MAC shell, only to MAC
-& eval "$(boot2docker shellinit)"
 
 # RUN PROJECT
 

@@ -1,4 +1,4 @@
-You can run this project like an usual PHP project, but it can run into Docker.
+You can run this project like an usual PHP project, but you can run it on Docker
 
 $ cd $HOME/Github/pos-desenv-web/09-programacao-web-2/example
 

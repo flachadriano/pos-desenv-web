@@ -11,7 +11,7 @@ class DataBase {
 		}
 	}
 	public function executeSQL($sql) {
-		$this->conexao->query ( $sql );
+		return $this->conexao->query ( $sql );
 	}
 	public function newTransaction() {
 		return $this->conexao->beginTransaction ();

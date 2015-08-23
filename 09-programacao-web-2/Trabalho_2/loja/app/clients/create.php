@@ -1,5 +1,9 @@
 <?php
+include "../../framework/framework.php";
 
-header("Location: /app/clients.php");
+$q = new Queries ();
+$q->createEntity ( "clients", $_POST );
+
+header ( "Location: /app/clients.php" );
 
 ?>

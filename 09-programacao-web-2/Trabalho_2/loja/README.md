@@ -1,0 +1,1 @@
+$ docker kill $(docker ps -q); docker build -t loja:latest .; docker run -d -p 80:80 loja

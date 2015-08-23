@@ -1,0 +1,41 @@
+CLIENTE
+id			int(10) PK
+nome		varchar(50)
+sobrenome	varchar(50)
+email		varchar(50)
+endereço	varchar(50)
+cep			int(8)
+estado		varchar(50)
+senha		varchar(32)
+
+PRODUTO
+id			int(10) PK
+categoria	int(10) FK
+nome		varchar(50)
+descrição	text
+preço		decimal(10,2)
+foto		int(1)
+estoque		smallint(4)
+
+CATEGORIA
+id			int(10) PK
+nome		varchar(50)
+
+CARRINHO
+id			int(10) PK
+cliente		int(10)
+data		datetime
+ip			varchar(50)
+cep			int(8)
+valor_frete	decimal(10,2)
+
+CARRINHO_PRODUTOS
+id			int(10) PK
+produto		int(10) FK
+carrinho	int(10) FK
+quantidade	smallint(4)
+
+ADM
+id			int(10) PK
+usuario		varchar(50)
+senha		varchar(50)

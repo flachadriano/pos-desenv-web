@@ -37,7 +37,7 @@ Start Docker
 $ boot2docker up
 
 Start the MAC shell
-& boot2docker shellinit
+$ eval "$(boot2docker shellinit)"
 
 # ACESSING PROJECT THROUGH BROWSER
 

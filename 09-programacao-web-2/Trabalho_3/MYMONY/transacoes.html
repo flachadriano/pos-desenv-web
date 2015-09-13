@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html ng-app="mymony">
+<head>
+	<meta charset="UTF-8">
+	<title>MYMONY</title>
+	<link href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/main.css" rel="stylesheet">
+	<script src="libs/angular/angular.min.js"></script>
+	<script src="js/transacaoController.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand"
+				href="/mymony">MyMony
+			</a>
+		</div>
+		<div>
+			<ul class="nav navbar-nav">
+				<li><a href="/mymony/categorias.html">Categoria</a></li>
+				<li class="active"><a href="/mymony/transacoes.html">Transações</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<div class="container main-content" ng-controller="TransacaoController">
+	<div ng-show='!modoEdicao'>
+		<div class="row">
+			<div class="col-md-12">
+				<form class="form-inline well well-sm">
+					<span class="glyphicon glyphicon-search"></span>
+					<div class="form-group">
+						<input type="text"
+						class="form-control"
+						id="descricao"
+						ng-model="search"
+						placeholder="Busca descrição..."
+						/>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-striped">
+					<caption>
+						<h4 class="text-center">Categorias</h4>
+						<br/>
+						<button type="col-md-1 button"
+							class="btn btn-info pull-right"
+							ng-click="toggleMode()">
+							Nova
+						</button>
+					</caption>
+				</caption>
+					<tr>
+						<th class="col-md-1 text-center">Valor
+							<span ng-click="order = 'descricao'" class="glyphicon glyphicon-menu-up"></span>
+							<span ng-click="order = '-descricao'" class="glyphicon glyphicon-menu-down"></span>
+						</th>
+						<th class="col-md-1 text-center">Data
+							<span ng-click="order = 'descricao'" class="glyphicon glyphicon-menu-up"></span>
+							<span ng-click="order = '-descricao'" class="glyphicon glyphicon-menu-down"></span>
+						</th>
+						<th class="col-md-4 text-center">Categoria
+							<span ng-click="order = 'descricao'" class="glyphicon glyphicon-menu-up"></span>
+							<span ng-click="order = '-descricao'" class="glyphicon glyphicon-menu-down"></span>
+						</th>
+						<th class="col-md-4 text-center">Descrição
+							<span ng-click="order = 'descricao'" class="glyphicon glyphicon-menu-up"></span>
+							<span ng-click="order = '-descricao'" class="glyphicon glyphicon-menu-down"></span>
+						</th>
+						<th class="col-md-2 text-center">Acao</th>
+					</tr>
+					<tr ng-repeat="transacao in transacoesFiltradas = (transacoes | filter:search | orderBy:order)">
+						<td class="col-md-1 text-center">{{ transacao.valor | number:2 }}</td>
+						<td class="col-md-1 text-center">{{ transacao.data | date:'dd/MM/yyyy'}}</td>
+						<td class="col-md-4 text-center">{{ getDescricaoCategoria(transacao.categoria) }}</td>
+						<td class="col-md-4 text-center">{{ transacao.descricao }}</td>
+						<td class="col-md-2 text-center">
+							<div class="btn-group" role="group" aria-label="...">
+								<div class="btn-group" role="group">
+									<button type="button"
+									class="btn btn-primary"
+									ng-click="toggleMode(transacao)">
+									Editar
+								</button>
+							</div>
+							<div class="btn-group" role="group">
+								<button type="button"
+								class="btn btn-danger"
+								ng-click="excluir(transacao)">
+								Excluir
+							</button>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr ng-show="transacoesFiltradas.length == 0 || transacoes.lenght > 0">
+				<td colspan="5">
+					<div class="alert alert-info">
+						<p class="text-center">Não foi possivel encontrar transações com '{{ search }}'</p>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</div>
+<div ng-show='modoEdicao'>
+	<form role="form">
+		<div class="form-group">
+			<label for="categoria">Categoria</label>
+			<select class="form-control" ng-model="transacaoEdicao.categoria">
+			    <option ng-selected="{{categoria.id == transacaoEdicao.categoria}}"
+			            ng-repeat="categoria in categoriasDescricao"
+			            value="{{categoria.id}}">
+			      {{categoria.descricao}}
+			    </option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="valor">Valor</label>
+			<input type="number" pattern="^\d*(\.\d{2}$)?" step="0.01" class="form-control"  ng-model="transacaoEdicao.valor"/>
+		</div>
+		<div class="form-group">
+			<label for="data">Data</label>
+			<input type="date" class="form-control" ng-model="transacaoEdicao.data" />
+		</div>
+		<div class="form-group">
+			<label for="descricao">Descrição</label>
+			<input type="descricao" class="form-control"  ng-model="transacaoEdicao.descricao"/>
+		</div>
+		<div class="btn-group pull-right" role="group" aria-label="...">
+			<div class="btn-group" role="group">
+				<button type="submit" class="btn btn-success" ng-click="salvar(transacaoEdicao)">Salvar</button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="submit" class="btn btn-danger" ng-click="toggleMode()">Cancelar</button>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+</body>
+</html>

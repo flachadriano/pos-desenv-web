@@ -1,37 +1,29 @@
 <?php
 class Queries extends DataBase {
 	public function listEntities($table) {
-		$sql = "select * from " . $table;
+		$sql = "select * from $table";
 		return $this->executeSQL ( $sql );
 	}
 	public function createEntity($table, $data) {
-		$sql = "insert into " . $table . "(";
-		
 		$first = true;
+		$columns = "";
+		$params = "";
+		$values = [];
+		
 		foreach ( $data as $field => $value ) {
 			if ($first)
 				$first = false;
-			else
-				$sql .= ", ";
-			$sql .= $field;
+			else {
+				$columns .= ", ";
+				$params .= ", ";
+			}
+			$columns .= $field;
+			$params .= ":".$field;
+			$values[$field] = $value;
 		}
 		
-		$sql .= ") values(";
-		
-		$first = true;
-		foreach ( $data as $field => $value ) {
-			if ($first)
-				$first = false;
-			else
-				$sql .= ", ";
-			$sql .= "'" . $value . "'";
-		}
-		
-		$sql .= ")";
-		
-		$this->newTransaction ();
-		$this->executeSQL ( $sql );
-		$this->commit ();
+		$sql = "insert into $table($columns) values($values)";
+		$this->executeInsert ( $sql, $values );
 		return $sql;
 	}
 	public function get($table, $id) {

@@ -3,6 +3,7 @@ include "../framework/framework.php";
 
 $q = new Queries ();
 
+echo "<a href='/app/home.php'>Home</a><br/>";
 echo "<a href='products/new.php'>Novo produto</a>";
 
 echo "<table>";

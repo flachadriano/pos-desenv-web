@@ -14,7 +14,7 @@ categoria	int(10) FK
 nome		varchar(50)
 descrição	text
 preço		decimal(10,2)
-foto		int(1)
+foto		tyniint(1)
 estoque		smallint(4)
 
 CATEGORIA
@@ -23,7 +23,7 @@ nome		varchar(50)
 
 CARRINHO
 id			int(10) PK
-cliente		int(10)
+cliente		int(10) FK
 data		datetime
 ip			varchar(50)
 cep			int(8)
@@ -38,4 +38,4 @@ quantidade	smallint(4)
 ADM
 id			int(10) PK
 usuario		varchar(50)
-senha		varchar(50)
+senha		varchar(32)

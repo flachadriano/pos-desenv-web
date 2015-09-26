@@ -13,11 +13,8 @@ class DataBase {
 	public function executeSQL($sql) {
 		return $this->conexao->query ( $sql );
 	}
-	public function newTransaction() {
-		return $this->conexao->beginTransaction ();
-	}
-	public function commit() {
-		return $this->conexao->commit ();
+	public function executeInsert($sql) {
+		$this->conexao->exec($sql);
 	}
 }
 

@@ -40,7 +40,15 @@ app.controller('CategoriaController', function ($scope, $http) {
 	$scope.salvar = function(categoria) {
 		$http.post('wrapper.php', {
 			class: 'Categoria',
+<<<<<<< Updated upstream
 			method: categoria.id > 0 ? 'Update' : 'Insert',
+=======
+<<<<<<< HEAD
+			method: categoria.id > 0 ? 'Update' : 'createEntity',
+=======
+			method: categoria.id > 0 ? 'Update' : 'Insert',
+>>>>>>> origin/master
+>>>>>>> Stashed changes
 			params: categoria
 		})
 		.then(function(response) {

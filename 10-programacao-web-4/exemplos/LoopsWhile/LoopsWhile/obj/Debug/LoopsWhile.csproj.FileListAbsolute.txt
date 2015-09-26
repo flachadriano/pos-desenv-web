@@ -1,0 +1,5 @@
+c:\dev\rsj\exemplos\LoopsWhile\LoopsWhile\bin\Debug\LoopsWhile.exe.config
+c:\dev\rsj\exemplos\LoopsWhile\LoopsWhile\bin\Debug\LoopsWhile.exe
+c:\dev\rsj\exemplos\LoopsWhile\LoopsWhile\bin\Debug\LoopsWhile.pdb
+c:\dev\rsj\exemplos\LoopsWhile\LoopsWhile\obj\Debug\LoopsWhile.exe
+c:\dev\rsj\exemplos\LoopsWhile\LoopsWhile\obj\Debug\LoopsWhile.pdb

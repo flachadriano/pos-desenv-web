@@ -1,0 +1,6 @@
+c:\dev\rsj\exemplos\Classes\Classes\bin\Debug\Classes.exe.config
+c:\dev\rsj\exemplos\Classes\Classes\obj\Debug\Classes.csprojResolveAssemblyReference.cache
+c:\dev\rsj\exemplos\Classes\Classes\bin\Debug\Classes.exe
+c:\dev\rsj\exemplos\Classes\Classes\bin\Debug\Classes.pdb
+c:\dev\rsj\exemplos\Classes\Classes\obj\Debug\Classes.exe
+c:\dev\rsj\exemplos\Classes\Classes\obj\Debug\Classes.pdb

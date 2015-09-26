@@ -1,0 +1,5 @@
+c:\dev\rsj\exemplos\BlocoDeConstrucao\BlocoDeConstrucao\bin\Debug\BlocoDeConstrucao.exe.config
+c:\dev\rsj\exemplos\BlocoDeConstrucao\BlocoDeConstrucao\bin\Debug\BlocoDeConstrucao.exe
+c:\dev\rsj\exemplos\BlocoDeConstrucao\BlocoDeConstrucao\bin\Debug\BlocoDeConstrucao.pdb
+c:\dev\rsj\exemplos\BlocoDeConstrucao\BlocoDeConstrucao\obj\Debug\BlocoDeConstrucao.exe
+c:\dev\rsj\exemplos\BlocoDeConstrucao\BlocoDeConstrucao\obj\Debug\BlocoDeConstrucao.pdb

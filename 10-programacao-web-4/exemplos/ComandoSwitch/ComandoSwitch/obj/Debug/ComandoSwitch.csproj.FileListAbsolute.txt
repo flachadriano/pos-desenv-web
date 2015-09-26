@@ -1,0 +1,5 @@
+c:\dev\rsj\exemplos\ComandoSwitch\ComandoSwitch\bin\Debug\ComandoSwitch.exe.config
+c:\dev\rsj\exemplos\ComandoSwitch\ComandoSwitch\bin\Debug\ComandoSwitch.exe
+c:\dev\rsj\exemplos\ComandoSwitch\ComandoSwitch\bin\Debug\ComandoSwitch.pdb
+c:\dev\rsj\exemplos\ComandoSwitch\ComandoSwitch\obj\Debug\ComandoSwitch.exe
+c:\dev\rsj\exemplos\ComandoSwitch\ComandoSwitch\obj\Debug\ComandoSwitch.pdb

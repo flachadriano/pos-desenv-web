@@ -1,0 +1,6 @@
+c:\dev\rsj\exemplos\Exercicio02\Exercicio02\bin\Debug\Exercicio02.exe.config
+c:\dev\rsj\exemplos\Exercicio02\Exercicio02\bin\Debug\Exercicio02.exe
+c:\dev\rsj\exemplos\Exercicio02\Exercicio02\bin\Debug\Exercicio02.pdb
+c:\dev\rsj\exemplos\Exercicio02\Exercicio02\obj\Debug\Exercicio02.csprojResolveAssemblyReference.cache
+c:\dev\rsj\exemplos\Exercicio02\Exercicio02\obj\Debug\Exercicio02.exe
+c:\dev\rsj\exemplos\Exercicio02\Exercicio02\obj\Debug\Exercicio02.pdb

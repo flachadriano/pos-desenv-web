@@ -1,0 +1,6 @@
+c:\dev\rsj\exemplos\FundamentosCSharp\FundamentosCSharp\bin\Debug\FundamentosCSharp.exe.config
+c:\dev\rsj\exemplos\FundamentosCSharp\FundamentosCSharp\obj\Debug\FundamentosCSharp.csprojResolveAssemblyReference.cache
+c:\dev\rsj\exemplos\FundamentosCSharp\FundamentosCSharp\bin\Debug\FundamentosCSharp.exe
+c:\dev\rsj\exemplos\FundamentosCSharp\FundamentosCSharp\bin\Debug\FundamentosCSharp.pdb
+c:\dev\rsj\exemplos\FundamentosCSharp\FundamentosCSharp\obj\Debug\FundamentosCSharp.exe
+c:\dev\rsj\exemplos\FundamentosCSharp\FundamentosCSharp\obj\Debug\FundamentosCSharp.pdb

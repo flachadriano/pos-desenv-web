@@ -6,12 +6,12 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.Key;
 import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.Signature;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 
@@ -49,18 +49,44 @@ public class ControllerServlet extends HttpServlet {
 		byte[] passwordEnc = applyAES(req.getParameter("password").getBytes(), Cipher.ENCRYPT_MODE);
 		usuario.setProperty("password", Base64.encodeBase64String(passwordEnc));
 		datastore.put(usuario);
+
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String login = req.getPathInfo().split("/")[2];
+		String[] params = req.getPathInfo().split("/");
+		String login = params[2];
+
+		String message = "";
+		if (params.length > 3)
+			message = req.getPathInfo().split("/")[3];
+
 		Filter loginFilter = new FilterPredicate("login", FilterOperator.EQUAL, login);
 		Query q = new Query("usuario").setFilter(loginFilter);
 		PreparedQuery pq = datastore.prepare(q);
 
 		for (Entity result : pq.asIterable()) {
 			String password = (String) result.getProperty("password");
+			String messageEncoded = (String) result.getProperty("message_encoded");
+			String dadosEncoded = (String) result.getProperty("dados_encoded");
+
+			resp.getWriter().write("Senha recuperada: ");
 			resp.getWriter().write(new String(applyAES(Base64.decodeBase64(password), Cipher.DECRYPT_MODE)));
+			resp.getWriter().write("\n");
+
+			if (message != null && !message.equals("")) {
+				resp.getWriter().write("Mensagem assinada: ");
+				if (verifyRSATrue(message, messageEncoded.getBytes())) {
+					resp.getWriter().write("Confere");
+				} else {
+					resp.getWriter().write("Não Confere");
+				}
+			}
+			resp.getWriter().write("\n");
+
+			String certificadoResult = decipherWithCertificateKey(dadosEncoded.getBytes());
+			if (!certificadoResult.isEmpty())
+				resp.getWriter().write("Dados aplicando certificado: " + certificadoResult);
 		}
 	}
 
@@ -74,94 +100,59 @@ public class ControllerServlet extends HttpServlet {
 			String message = req.getParameter("message");
 			if (message != null && !message.equals("")) {
 				result.setProperty("message", message);
-//
-//				try {
-//					int hashCode = message.hashCode();
-//					byte[] hashCodeBytes = new Integer(hashCode).toString().getBytes();
-//					result.setProperty("message_hash", hashCode);
-//
-//					KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-//					keyGen.initialize(1024);
-//					KeyPair key = keyGen.generateKeyPair();
-//
-//					final Cipher cipher = Cipher.getInstance("RSA");
-//					cipher.init(Cipher.ENCRYPT_MODE, key.getPublic());
-//					byte[] cipherText = cipher.doFinal(hashCodeBytes);
-//					result.setProperty("message_hash_encoded", Base64.encodeBase64String(cipherText));
-//
-//					final Cipher cipher2 = Cipher.getInstance("RSA");
-//					cipher2.init(Cipher.DECRYPT_MODE, key.getPrivate());
-//					byte[] cipherText2 = cipher2.doFinal(cipherText);
-//					result.setProperty("message_hash_decoded", new String(cipherText2));
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-				
-				String encodedMsg = cipherRSA(message);
-				result.setProperty("message_encoded", encodedMsg);
-				result.setProperty("message_decoded", decipherRSA(encodedMsg));
+				result.setProperty("message_encoded", applyRSATrue(message));
 			}
 
 			String dados = req.getParameter("dados");
 			if (dados != null && !dados.equals("")) {
 				result.setProperty("dados", dados);
-
-				// FileInputStream fr = new
-				// FileInputStream("certificado-mymony.cer");
-				// X509Certificate c = X509Certificate.getInstance(fr);
-				//
-				// Cipher cifra = Cipher.getInstance("RSA");
-				// cifra.init(Cipher.ENCRYPT_MODE, c.getPublicKey());
-				// byte[] mensagemCifrada = cifra.doFinal(dados.getBytes());
-				// result.setProperty("dados_encoded", new
-				// String(mensagemCifrada));
-				// result.setProperty("dados_encoded", cipherWithKey(dados));
-
-				// Key pKey = getPrivateKey("keystore.jks", "mymony", "mymony");
-				// Cipher cifra2 = Cipher.getInstance("RSA");
-				// cifra2.init(Cipher.DECRYPT_MODE, pKey);
-				// byte[] mensagem2 = cifra2.doFinal(mensagemCifrada);
-				// result.setProperty("dados_decoded", new String(mensagem2));
-
-				String mensagem2 = cipherWithCertificateKey(dados);
-				result.setProperty("dados_encoded", mensagem2);
-				result.setProperty("dados_decoded", decipherWithCertificateKey(mensagem2));
+				result.setProperty("dados_encoded", cipherWithCertificateKey(dados));
 			}
 
 			datastore.put(result);
 		}
 	}
 
-	private String decipherRSA(String msg) {
-		byte[] cipherText2 = "".getBytes();
+	private String applyRSATrue(String mensagem) {
+		byte[] result = "".getBytes();
 		try {
-			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-			keyGen.initialize(1024);
-			KeyPair key = keyGen.generateKeyPair();
+
+			KeyPair par = getKeys(getKeyStore(), "mymony", "mymony".toCharArray());
+			PrivateKey priv = par.getPrivate();
+
+			Signature sgn = Signature.getInstance("MD5withRSA");
+			sgn.initSign(priv);
+			sgn.update(mensagem.getBytes());
+			result = sgn.sign();
+
+			if (verifyRSATrue(mensagem, result)) {
+				System.out.println("sucess");
+			} else {
+				System.out.println("falhou");
+			}
 			
-			Cipher cipher2 = Cipher.getInstance("RSA");
-			cipher2.init(Cipher.DECRYPT_MODE, key.getPrivate());
-			cipherText2 = cipher2.doFinal(msg.getBytes());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new String(cipherText2);
+		return new String(Base64.encodeBase64(result));
 	}
 
-	private String cipherRSA(String msg) {
-		byte[] cipherText = "".getBytes();
+	private boolean verifyRSATrue(String messageToValidate, byte[] mensageAssinada) {
+		boolean result = false;
 		try {
-			KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-			keyGen.initialize(1024);
-			KeyPair key = keyGen.generateKeyPair();
 
-			Cipher cipher = Cipher.getInstance("RSA");
-			cipher.init(Cipher.ENCRYPT_MODE, key.getPublic());
-			cipherText = cipher.doFinal(msg.getBytes());
+			KeyPair par = getKeys(getKeyStore(), "mymony", "mymony".toCharArray());
+			PublicKey pub = par.getPublic();
+
+			Signature sgn = Signature.getInstance("MD5withRSA");
+			sgn.initVerify(pub);
+			sgn.update(messageToValidate.getBytes());
+			result = sgn.verify(Base64.decodeBase64(mensageAssinada));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new String(cipherText);
+		return result;
 	}
 
 	private String cipherWithCertificateKey(String msg) {
@@ -177,16 +168,16 @@ public class ControllerServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new String(mensagemCifrada);
+		return new String(Base64.encodeBase64(mensagemCifrada));
 	}
 
-	private String decipherWithCertificateKey(String msg) {
+	private String decipherWithCertificateKey(byte[] msg) {
 		byte[] mensagem2 = "".getBytes();
 		try {
 			Key pKey = getPrivateKey("keystore.jks", "mymony", "mymony");
 			Cipher cifra2 = Cipher.getInstance("RSA");
 			cifra2.init(Cipher.DECRYPT_MODE, pKey);
-			mensagem2 = cifra2.doFinal(msg.getBytes());
+			mensagem2 = cifra2.doFinal(Base64.decodeBase64(msg));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -231,6 +222,22 @@ public class ControllerServlet extends HttpServlet {
 	}
 
 	// From http://javaalmanac.com/egs/java.security/GetKeyFromKs.html
+
+	private KeyStore getKeyStore() {
+		try {
+
+			KeyStore ks = KeyStore.getInstance("JKS");
+			char[] passPhrase = "mymony".toCharArray();
+
+			File keystorePath = new File("keystore.jks");
+			ks.load(new FileInputStream(keystorePath), passPhrase);
+
+			return ks;
+
+		} catch (Exception e) {
+		}
+		return null;
+	}
 
 	public KeyPair getKeys(KeyStore keystore, String alias, char[] password) {
 		try {

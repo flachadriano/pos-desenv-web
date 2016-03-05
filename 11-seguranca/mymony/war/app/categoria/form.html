@@ -14,9 +14,10 @@
 
 <div class="form">
   <div>
-    <span class="title">Recuperar senha</span>
+    <span class="title">Recuperar dados</span>
     <form name="dataForm">
       <span>Login<input type="text" name="login" ng-model="data.login"></span>
+      <span>Mensagem<input type="text" name="message" ng-model="data.message"></span>
     </form>
     <button ng-click="onGetForm(dataForm, data)" ng-disabled="dataForm.$invalid">Recuperar</button>
     <button ng-click="onCancelForm()">Cancelar</button>
@@ -27,7 +28,7 @@
 
 <div class="form">
   <div>
-    <span class="title">Salvar conteúdo</span>
+    <span class="title">Salvar conteúdo com RSA</span>
     <form name="dataForm">
       <span>Login<input type="text" name="login" ng-model="data.login"></span>
       <span>Mensagem<input type="text" name="message" ng-model="data.message"></span>
@@ -41,10 +42,10 @@
 
 <div class="form">
   <div>
-    <span class="title">Conteúdo para aplicar certificado</span>
+    <span class="title">Salvar conteúdo com certificado</span>
     <form name="dataForm">
       <span>Login<input type="text" name="login" ng-model="data.login"></span>
-      <span>Mensagem<input type="text" name="dados" ng-model="data.dados"></span>
+      <span>Dados<input type="text" name="dados" ng-model="data.dados"></span>
     </form>
     <button ng-click="onPutForm(dataForm, data)" ng-disabled="dataForm.$invalid">Salvar</button>
     <button ng-click="onCancelForm()">Cancelar</button>

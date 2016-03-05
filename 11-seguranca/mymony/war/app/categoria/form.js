@@ -10,7 +10,11 @@ function controller($scope, CategoriaService) {
 	};
 
 	$scope.onGetForm = function(form, data) {
-		$scope.service.get(data.login);
+		$scope.service.get(data.login, data.message).then(
+			function(response) {
+				alert(response);
+			}
+		);
 	};
 
 	$scope.onPutForm = function(form, data) {

@@ -30,8 +30,12 @@ function service($http, $q) {
     return createPromise(request, true);
   }
 
-  function getRecord(id) {
-    var request = $http.get(resource + id);
+  function getRecord(id, message) {
+    var url = resource + id;
+    if (message) {
+      url = url + '/' + message;
+    }
+    var request = $http.get(url);
 
     return createPromise(request, true);
   }

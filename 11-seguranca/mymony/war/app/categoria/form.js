@@ -12,4 +12,9 @@ function controller($scope, CategoriaService) {
 	$scope.onGetForm = function(form, data) {
 		$scope.service.get(data.login);
 	};
+
+	$scope.onPutForm = function(form, data) {
+		data.id = true;
+		$scope.service.create(data);
+	};
 }

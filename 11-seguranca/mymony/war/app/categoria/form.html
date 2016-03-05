@@ -1,0 +1,12 @@
+<div class="form">
+  <div>
+    <span class="title">Categoria</span>
+
+    <form name="dataForm">
+      <span>Nome<input type="text" name="name" ng-model="data.name"></span>
+    </form>
+
+    <button ng-click="onCreateForm(dataForm, data)" ng-disabled="dataForm.$invalid">Salvar</button>
+    <button ng-click="onCancelForm()">Cancelar</button>
+  </div>
+</div>

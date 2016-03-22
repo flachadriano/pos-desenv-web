@@ -5,9 +5,9 @@ module.exports = function(app) {
     get(controller.listar).
     post(controller.adicionar);
 
-  app.route('categorias/:id').
+  app.route('/categorias/:id').
     get(controller.obter).
     put(controller.atualizar).
-    delete(controller.deletar);
+    delete(controller.remover);
 
 };

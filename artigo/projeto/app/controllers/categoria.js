@@ -1,50 +1,67 @@
-module.exports = function() {
+module.exports = function(app) {
+  var Categoria = app.models.categoria;
   var controller = {};
-  var ID_CONTATO_INC = 1;
-  var categorias = [{
-    _id: 1,
-    nome: "Teste"
-  }];
 
   controller.listar = function(req, res) {
-    res.json(categorias);
+    Categoria.find().exec().then(
+      function(categorias) {
+        res.json(categorias);
+      },
+      function(erro) {
+        res.status(500).json(erro);
+      }
+    );
   };
 
   controller.obter = function(req, res) {
-    var idCategoria = req.params.id;
-    var categoria = categorias.filter(function(categoria) {
-      return categoria._id == idCategoria;
-    })[0];
-
-    categoria ? res.json(categoria) : res.status(404).send('Categoria não encontrada.');
+    var _id = req.params.id;
+    Categoria.findById(_id).exec().then(
+      function(categoria) {
+        if (!categoria) throw new Error('Categoria não encontrada.');
+        res.json(categoria);
+      },
+      function(erro) {
+        res.status(404).json(erro);
+      }
+    );
   };
 
   controller.adicionar = function(req, res) {
-    var categoria = req.body;
-    categoria._id = ++ID_CONTATO_INC;
-    categorias.push(categoria);
-    res.json(categoria);
+    Categoria.create(req.body).then(
+      function(contato) {
+        res.status(201).json(contato);
+      },
+      function(erro) {
+        res.status(500).json(erro);
+      }
+    );
   };
 
   controller.atualizar = function(req, res) {
-    var categoriaAlterada = req.body;
-    categoriaAlterada._id = req.params.id;
-    categorias = categorias.map(function(categoria) {
-      if (categoria._id == categoriaAlterada._id) {
-        categoria = categoriaAlterada;
+    var _id = req.params.id;
+    Categoria.findByIdAndUpdate(_id, req.body).exec().then(
+      function(categoria) {
+        res.json(categoria);
+      },
+      function(erro) {
+        res.status(500).json(erro);
       }
-      return categoria;
-    });
-    res.json(categoriaAlterada);
+    );
   };
 
   controller.remover = function(req, res) {
-    var idCategoria = req.params.id;
-    categorias = categorias.filter(function(categoria) {
-      return categoria._id != idCategoria;
-    });
-    res.send(204).end();
-  }
+    var _id = req.params.id;
+    Categoria.remove({
+      _id: _id
+    }).exec().then(
+      function() {
+        res.end();
+      },
+      function(erro) {
+        res.status(404).json(erro);
+      }
+    );
+  };
 
   return controller;
 };

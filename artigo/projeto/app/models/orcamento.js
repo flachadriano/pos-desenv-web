@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+require('mongoose-double')(mongoose);
+var SchemaTypes = mongoose.Schema.Types;
 
 module.exports = function() {
 
@@ -7,9 +9,7 @@ module.exports = function() {
       type: mongoose.Schema.ObjectId,
       ref: 'Categoria'
     },
-    valor: {
-      type: 'Number'
-    }
+    valor: SchemaTypes.Double
   });
 
   return mongoose.model('Orcamento', schema);

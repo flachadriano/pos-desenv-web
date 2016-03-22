@@ -21,7 +21,7 @@ Listar orçamentos:
 curl localhost:3000/orcamentos
 
 Criar orçamento:
-curl -X POST --data "categoria=56f1b243f322602d0cc4de13&valor=123" localhost:3000/orcamentos
+curl -X POST --data "categoria=56f1b243f322602d0cc4de13&valor=123.45" localhost:3000/orcamentos
 
 Buscar orçamento:
 curl localhost:3000/orcamentos/56f1b6b9b8e8e7d10c2ffcf6

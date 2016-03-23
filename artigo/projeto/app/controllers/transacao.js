@@ -1,5 +1,8 @@
+var async = require('async');
+
 module.exports = function(app) {
   var Transacao = app.models.transacao;
+  var Orcamento = app.models.orcamento;
   var controller = {};
 
   controller.listar = function(req, res) {
@@ -28,8 +31,8 @@ module.exports = function(app) {
 
   controller.adicionar = function(req, res) {
     Transacao.create(req.body).then(
-      function(contato) {
-        res.status(201).json(contato);
+      function(transacao) {
+        verificarOrcamento(transacao, res);
       },
       function(erro) {
         res.status(500).json(erro);
@@ -41,7 +44,7 @@ module.exports = function(app) {
     var _id = req.params.id;
     Transacao.findByIdAndUpdate(_id, req.body).exec().then(
       function(transacao) {
-        res.json(transacao);
+        verificarOrcamento(transacao, res);
       },
       function(erro) {
         res.status(500).json(erro);
@@ -62,6 +65,56 @@ module.exports = function(app) {
       }
     );
   };
+
+  function verificarOrcamento(transacao, res) {
+    async.parallel([
+        // buscar orçamento
+        function(callback) {
+          Orcamento.findOne({
+            categoria: transacao.categoria
+          }).populate('categoria').exec(function(erro, orcamento) {
+            if (erro)
+              callback(erro);
+            callback(null, orcamento);
+          });
+        },
+
+        // buscar transações
+        function(callback) {
+          Transacao.find({
+            categoria: transacao.categoria
+          }).exec(function(erro, transacoes) {
+            if (erro)
+              callback(erro);
+            callback(null, transacoes);
+          });
+        }
+      ],
+
+      // exibir resultados
+      function(erros, resultados) {
+        if (erros) {
+          res.status(500).json(erros);
+        } else {
+          var orcamento = resultados[0];
+          var valorOrcamento = parseFloat(orcamento.valor.value);
+          var transacoes = resultados[1];
+          var totalTransacoes = transacoes.reduce(function(somatorio, transacao) {
+            return somatorio + parseFloat(transacao.valor.value);
+          }, 0);
+
+          var result = {transacao: transacao};
+          if (totalTransacoes > valorOrcamento) {
+            result.alerta = 'As transações para a categoria ' + orcamento.categoria.nome + ' estouraram o orçamento.';
+          } else if (totalTransacoes > (valorOrcamento * 0.75)) {
+            result.alerta = 'As transações para a categoria ' + orcamento.categoria.nome + ' alcançaram 75% do orçamento.';
+          } else if (totalTransacoes > (valorOrcamento * 0.5)) {
+            result.alerta = 'As transações para a categoria ' + orcamento.categoria.nome + ' totalizam mais da metade do orçamento.';
+          }
+          res.status(201).json(result);
+        }
+      });
+  }
 
   return controller;
 };

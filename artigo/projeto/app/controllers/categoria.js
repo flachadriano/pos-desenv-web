@@ -28,8 +28,8 @@ module.exports = function(app) {
 
   controller.adicionar = function(req, res) {
     Categoria.create(req.body).then(
-      function(contato) {
-        res.status(201).json(contato);
+      function(categoria) {
+        res.status(201).json(categoria);
       },
       function(erro) {
         res.status(500).json(erro);

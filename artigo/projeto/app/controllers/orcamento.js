@@ -28,8 +28,8 @@ module.exports = function(app) {
 
   controller.adicionar = function(req, res) {
     Orcamento.create(req.body).then(
-      function(contato) {
-        res.status(201).json(contato);
+      function(orcamento) {
+        res.status(201).json(orcamento);
       },
       function(erro) {
         res.status(500).json(erro);

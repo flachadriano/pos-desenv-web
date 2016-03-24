@@ -2,12 +2,12 @@
   "name": "mymony",
   "version": "1.0.0",
   "description": "Controle financeiro pessoal",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "Finance",
+    "Financeiro",
     "MEAN"
   ],
   "author": "Adriano Flach de Araujo",

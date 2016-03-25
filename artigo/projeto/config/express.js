@@ -7,11 +7,8 @@ module.exports = function() {
 
   app.set('port', 3000);
 
-  // middleware
-  app.use(express.static('./public'));
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
-  app.use(require('method-override')());
 
   load('models', {cwd: 'app'}).
     then('controllers').
